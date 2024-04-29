@@ -11,6 +11,19 @@
                     <Border Background="{TemplateBinding Background}"
                             BorderBrush="{TemplateBinding BorderBrush}"
                             BorderThickness="{TemplateBinding BorderThickness}">
+
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            
+                            <TextBlock Grid.Row="0" Grid.Column="0" VerticalAlignment="Center"
+                                       Text="{TemplateBinding Text}" TextAlignment="Center" TextWrapping="Wrap"/>
+                        </Grid>
+
                     </Border>
                 </ControlTemplate>
             </Setter.Value>

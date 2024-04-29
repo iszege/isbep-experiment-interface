@@ -9,7 +9,7 @@
         Title="MainWindow" Height="450" Width="800">
     
     <Grid>
-        <cc:NavigationButton Width="200" Height="50" Text="Test" Background="LightGray"/>
+        <Frame Source="/Pages/Landing.xaml" NavigationUIVisibility="Hidden"/>
     </Grid>
     
 </Window>

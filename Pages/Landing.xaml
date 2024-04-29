@@ -22,10 +22,12 @@
                Content="Landing Page" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="32" FontWeight="DemiBold"/>
 
         <StackPanel x:Name="InteractionSelection" Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center"
-                    Height="200">
+                    Height="200" ButtonBase.Click="OnNavigationClick">
             <Button x:Name="Interaction1" Content="Interaction Method #1" Width="150" Margin="10,10,10,10"/>
             <Button x:Name="Interaction2" Content="Interaction Method #2" Width="150" Margin="10,10,10,10"/>
             <Button x:Name="Interaction3" Content="Interaction Method #3" Width="150" Margin="10,10,10,10"/>
+            <cc:NavigationButton x:Name="Test" Text="Start" Width="150" Margin="10" Background="LightCoral" BorderThickness="1"
+                                 BorderBrush="Gray" NavigationUri="/Pages/InteractionStart.xaml"/>
         </StackPanel>
     </Grid>
 </Page>

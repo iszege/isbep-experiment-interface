@@ -1,0 +1,30 @@
+﻿<Page x:Class="ExperimentInterface.Pages.Landing"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:ExperimentInterface.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="Landing">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="3*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <Label x:Name="LandingTitle" Margin="10,0,10,0" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="3"
+               Content="Landing Page" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="32" FontWeight="DemiBold"/>
+
+        <StackPanel x:Name="InteractionSelection" Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center"
+                    Height="200">
+            <Button x:Name="Interaction1" Content="Interaction Method #1" Width="150" Margin="10,10,10,10"/>
+            <Button x:Name="Interaction2" Content="Interaction Method #2" Width="150" Margin="10,10,10,10"/>
+            <Button x:Name="Interaction3" Content="Interaction Method #3" Width="150" Margin="10,10,10,10"/>
+        </StackPanel>
+    </Grid>
+</Page>

@@ -4,20 +4,69 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:ExperimentInterface.Pages"
+      xmlns:cc="clr-namespace:ExperimentInterface.CustomControls"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      d:DesignHeight="600" d:DesignWidth="920"
       Title="InteractionStart">
 
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="4*"/>
+            <RowDefinition Height="1.2*"/>
+            <RowDefinition Height="3*"/>
+            <RowDefinition Height="0.5*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="5*"/>
+            <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
-        <Label x:Name="LandingTitle" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="3"
-               Content="Interaction Start Page" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="32" FontWeight="DemiBold"/>
+        <Border x:Name="TitleBorder" Grid.Row="0" Grid.Column="1"
+                CornerRadius="10" Margin="10,15,10,15"
+                VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+
+            <Border.Effect>
+                <DropShadowEffect Color="Gray" Opacity="0.2"
+                                    Direction="270"/>
+            </Border.Effect>
+
+            <Border.Background>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="1,2">
+                    <GradientStop Color="White" Offset="0.0"/>
+                    <GradientStop Color="LightGray" Offset="1.5"/>
+                </LinearGradientBrush>
+            </Border.Background>
+
+            <Label x:Name="TitleLabel" Content="Interaction Trial" 
+                   HorizontalContentAlignment="Center" 
+                   VerticalContentAlignment="Center" 
+                   FontSize="32" FontWeight="DemiBold"/>
+
+        </Border>
+
+        <Grid x:Name="PageContent" Grid.Row="1" Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="2*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <TextBlock x:Name="Description" Grid.Row="0" Margin="10"
+                       HorizontalAlignment="Center" FontSize="18">
+                A description of the task to be performed goes here.
+            </TextBlock>
+            
+            <StackPanel x:Name="NavigationPanel" Grid.Row="2"
+                        Orientation="Horizontal" HorizontalAlignment="Center">
+                <cc:NavigationButton x:Name="BackButton"/>
+
+                <cc:NavigationButton x:Name="StartButton"/>
+            </StackPanel>
+
+        </Grid>
+        
+        <Border x:Name="ToolbarBorder"
+                Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3"
+                Background="Black" Margin="0,0,0,0" />
+
     </Grid>
 </Page>

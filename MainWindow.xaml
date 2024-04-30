@@ -6,10 +6,27 @@
         xmlns:local="clr-namespace:ExperimentInterface"
         xmlns:cc="clr-namespace:ExperimentInterface.CustomControls"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    
-    <Grid>
-        <Frame Source="/Pages/Landing.xaml" NavigationUIVisibility="Hidden"/>
-    </Grid>
+        Height="600" Width="920"
+        WindowStartupLocation="CenterScreen"
+        WindowStyle="None"
+        ResizeMode="NoResize"
+        Background="Transparent"
+        AllowsTransparency="True">
+
+    <Border Background="LightGray"
+            CornerRadius="10">
+
+        <Border.Clip>
+            <RectangleGeometry RadiusX="10"
+                               RadiusY="10"
+                               Rect="0,0,920,600"/>
+        </Border.Clip>
+        
+        <Grid>
+            <Frame Source="/Pages/Landing.xaml"
+                   NavigationUIVisibility="Hidden"/>
+        </Grid>
+        
+    </Border>
     
 </Window>

@@ -6,28 +6,72 @@
       xmlns:local="clr-namespace:ExperimentInterface.Pages"
       xmlns:cc="clr-namespace:ExperimentInterface.CustomControls"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      d:DesignHeight="600" d:DesignWidth="920"
       Title="Landing">
 
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="4*"/>
+            <RowDefinition Height="1.2*"/>
+            <RowDefinition Height="3*"/>
+            <RowDefinition Height="0.5*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="5*"/>
+            <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
-        <Label x:Name="LandingTitle" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="3"
-               Content="Landing Page" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="32" FontWeight="DemiBold"/>
+        <Border x:Name="TitleBorder" Grid.Row="0" Grid.Column="1"
+                CornerRadius="10" Margin="10,15,10,15"
+                VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+            
+            <Border.Effect>
+                <DropShadowEffect Color="Gray" Opacity="0.2"
+                                    Direction="270"/>
+            </Border.Effect>
 
-        <StackPanel x:Name="InteractionSelection" Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center"
-                    Height="200" ButtonBase.Click="OnNavigationClick">
+            <Border.Background>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="1,2">
+                    <GradientStop Color="White" Offset="0.0"/>
+                    <GradientStop Color="LightGray" Offset="1.5"/>
+                </LinearGradientBrush>
+            </Border.Background>
+
+            <Label x:Name="LandingTitle" Content="Home" 
+                   HorizontalContentAlignment="Center" 
+                   VerticalContentAlignment="Center" 
+                   FontSize="32" FontWeight="DemiBold"/>
+            
+        </Border>
+
+        <Grid x:Name="InteractionSelection" Grid.Row="1" Grid.Column="1"
+              Margin="0,50,0,50">
+            
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Button Content="Interaction Method #1" Grid.Column="0" Margin="10"/>
+            <Button Content="Interaction Method #2" Grid.Column="1" Margin="10"/>
+            <Button Content="Interaction Method #3" Grid.Column="2" Margin="10"/>
+
+        </Grid>
+
+        <!--<StackPanel x:Name="InteractionSelection" Grid.Row="1" Grid.Column="1"
+                    Orientation="Horizontal" Margin="10,15,10,15"
+                    ButtonBase.Click="OnNavigationClick">
             <Button x:Name="Interaction1" Content="Interaction Method #1" Width="150" Margin="10,10,10,10"/>
             <Button x:Name="Interaction2" Content="Interaction Method #2" Width="150" Margin="10,10,10,10"/>
-            <Button x:Name="Interaction3" Content="Interaction Method #3" Width="150" Margin="10,10,10,10"/>
+            --><!--<Button x:Name="Interaction3" Content="Interaction Method #3" Width="150" Margin="10,10,10,10"/>--><!--
             <cc:NavigationButton x:Name="Test" Text="Start" Width="150" Margin="10" Background="LightCoral" BorderThickness="1"
                                  BorderBrush="Gray" NavigationUri="/Pages/InteractionStart.xaml"/>
-        </StackPanel>
+        </StackPanel>-->
+
+        <Border x:Name="ToolbarBorder"
+                Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3"
+                Background="Black" Margin="0,0,0,0" />
+
     </Grid>
 </Page>

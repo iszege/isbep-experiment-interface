@@ -56,10 +56,28 @@
             </TextBlock>
             
             <StackPanel x:Name="NavigationPanel" Grid.Row="2"
-                        Orientation="Horizontal" HorizontalAlignment="Center">
-                <cc:NavigationButton x:Name="BackButton"/>
+                        Orientation="Horizontal" HorizontalAlignment="Center"
+                        ButtonBase.Click="OnNavigationClick">
 
-                <cc:NavigationButton x:Name="StartButton"/>
+                <cc:NavigationButton x:Name="BackButton" 
+                                     NavigationUri="/Pages/Landing.xaml"
+                                     Background="LightGray" Foreground="Black"
+                                     BorderBrush="Black" BorderThickness="2"
+                                     Width="150" Height="40" CornerRadius="10"
+                                     Content="Back" FontFamily="Roboto"
+                                     FontSize="16" FontWeight="DemiBold"
+                                     Margin="5"
+                                     />
+
+                <cc:NavigationButton x:Name="StartButton"
+                                     NavigationUri="/Pages/Landing.xaml"
+                                     Background="Black" Foreground="White"
+                                     Width="150" Height="40" CornerRadius="10"
+                                     Content="Start" FontFamily="Roboto"
+                                     FontSize="16" FontWeight="DemiBold"
+                                     Margin="5"
+                                     />
+                
             </StackPanel>
 
         </Grid>

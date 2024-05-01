@@ -8,11 +8,16 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type local:NavigationButton}">
-                    <Border Background="{TemplateBinding Background}"
+                    <Border Name="ButtonArea"
+                            Background="{TemplateBinding Background}"
                             BorderBrush="{TemplateBinding BorderBrush}"
-                            BorderThickness="{TemplateBinding BorderThickness}">
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            CornerRadius="{TemplateBinding CornerRadius}">
 
-                        <Grid>
+                        <ContentPresenter Content="{TemplateBinding Content}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+
+                        
+                        <!--<Grid>
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="*"/>
                             </Grid.RowDefinitions>
@@ -22,9 +27,15 @@
                             
                             <TextBlock Grid.Row="0" Grid.Column="0" VerticalAlignment="Center"
                                        Text="{TemplateBinding Text}" TextAlignment="Center" TextWrapping="Wrap"/>
-                        </Grid>
+                        </Grid>-->
 
                     </Border>
+
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" TargetName="ButtonArea" Value="#828282"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>

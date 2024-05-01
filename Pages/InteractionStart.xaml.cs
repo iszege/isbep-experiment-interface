@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ExperimentInterface.CustomControls;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,16 @@ namespace ExperimentInterface.Pages
         public InteractionStart()
         {
             InitializeComponent();
+        }
+
+        private void OnNavigationClick(object sender, RoutedEventArgs e)
+        {
+            NavigationButton? ClickedButton = e.OriginalSource as NavigationButton;
+
+            if (ClickedButton != null)
+            {
+                NavigationService.Navigate(ClickedButton.NavigationUri);
+            }
         }
     }
 }

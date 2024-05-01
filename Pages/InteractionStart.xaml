@@ -37,7 +37,7 @@
                 </LinearGradientBrush>
             </Border.Background>
 
-            <Label x:Name="TitleLabel" Content="Interaction Trial" 
+            <Label x:Name="TitleLabel" Content="Interaction Task" 
                    HorizontalContentAlignment="Center" 
                    VerticalContentAlignment="Center" 
                    FontSize="32" FontWeight="DemiBold"/>
@@ -63,7 +63,7 @@
                                      NavigationUri="/Pages/Landing.xaml"
                                      Background="LightGray" Foreground="Black"
                                      BorderBrush="Black" BorderThickness="2"
-                                     Width="150" Height="40" CornerRadius="10"
+                                     Width="175" Height="40" CornerRadius="10"
                                      Content="Back" FontFamily="Roboto"
                                      FontSize="16" FontWeight="DemiBold"
                                      Margin="5"
@@ -72,8 +72,8 @@
                 <cc:NavigationButton x:Name="StartButton"
                                      NavigationUri="/Pages/Landing.xaml"
                                      Background="Black" Foreground="White"
-                                     Width="150" Height="40" CornerRadius="10"
-                                     Content="Start" FontFamily="Roboto"
+                                     Width="175" Height="40" CornerRadius="10"
+                                     Content="Start Task" FontFamily="Roboto"
                                      FontSize="16" FontWeight="DemiBold"
                                      Margin="5"
                                      />

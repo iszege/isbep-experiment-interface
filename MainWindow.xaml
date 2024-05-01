@@ -23,7 +23,7 @@
         </Border.Clip>
         
         <Grid>
-            <Frame Source="/Pages/InteractionStart.xaml"
+            <Frame Source="/Pages/Landing.xaml"
                    NavigationUIVisibility="Hidden"/>
         </Grid>
         

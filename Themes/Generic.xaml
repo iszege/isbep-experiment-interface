@@ -16,19 +16,6 @@
 
                         <ContentPresenter Content="{TemplateBinding Content}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
 
-                        
-                        <!--<Grid>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="*"/>
-                            </Grid.RowDefinitions>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*"/>
-                            </Grid.ColumnDefinitions>
-                            
-                            <TextBlock Grid.Row="0" Grid.Column="0" VerticalAlignment="Center"
-                                       Text="{TemplateBinding Text}" TextAlignment="Center" TextWrapping="Wrap"/>
-                        </Grid>-->
-
                     </Border>
 
                     <ControlTemplate.Triggers>
@@ -36,6 +23,36 @@
                             <Setter Property="Background" TargetName="ButtonArea" Value="#828282"/>
                         </Trigger>
                     </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="{x:Type local:NavigationCard}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type local:NavigationCard}">
+                    <Border Name="CardArea"
+                            Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            CornerRadius="{TemplateBinding CornerRadius}">
+
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <ContentPresenter Content="{TemplateBinding Content}" 
+                                              Grid.Row="1"
+                                              HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Grid>
+
+                    </Border>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>

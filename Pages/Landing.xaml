@@ -53,7 +53,7 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
-            <cc:NavigationCard Content="Test"></cc:NavigationCard>
+            <cc:NavigationCard Content="Test"/>
             <!--<Button Content="Interaction Method #1" Grid.Column="0" Margin="10"/>-->
             <Button Content="Interaction Method #2" Grid.Column="1" Margin="10"/>
             <Button Content="Interaction Method #3" Grid.Column="2" Margin="10"/>

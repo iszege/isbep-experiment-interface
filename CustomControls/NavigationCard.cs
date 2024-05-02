@@ -73,5 +73,27 @@ namespace ExperimentInterface.CustomControls
         public static readonly DependencyProperty CornerRadiusProperty =
             DependencyProperty.Register("CornerRadius", typeof(CornerRadius), typeof(NavigationCard), new PropertyMetadata(new CornerRadius(0)));
 
+        public ImageSource ImageSource
+        {
+            get { return (ImageSource)GetValue(ImageSourceProperty); }
+            set { SetValue(ImageSourceProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for ImageSource.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty ImageSourceProperty =
+            DependencyProperty.Register("ImageSource", typeof(ImageSource), typeof(NavigationCard), new PropertyMetadata(null));
+
+        public string Text
+        {
+            get { return (string)GetValue(TextProperty); }
+            set { SetValue(TextProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for Text.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty TextProperty =
+            DependencyProperty.Register("Text", typeof(string), typeof(NavigationCard), new PropertyMetadata(null));
+
+
+
     }
 }

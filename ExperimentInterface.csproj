@@ -8,7 +8,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Images\" />
+    <Folder Include="Images\Application\" />
+    <Folder Include="Images\Tasks\" />
+    <Folder Include="Images\UI\" />
   </ItemGroup>
 
 </Project>

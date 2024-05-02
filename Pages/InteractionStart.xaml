@@ -57,7 +57,7 @@
             
             <StackPanel x:Name="NavigationPanel" Grid.Row="2"
                         Orientation="Horizontal" HorizontalAlignment="Center"
-                        ButtonBase.Click="OnNavigationClick">
+                        ButtonBase.Click="OnNavigationButtonClick">
 
                 <cc:NavigationButton x:Name="BackButton" 
                                      NavigationUri="/Pages/Landing.xaml"

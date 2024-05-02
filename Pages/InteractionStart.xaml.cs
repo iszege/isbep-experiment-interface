@@ -26,7 +26,7 @@ namespace ExperimentInterface.Pages
             InitializeComponent();
         }
 
-        private void OnNavigationClick(object sender, RoutedEventArgs e)
+        private void OnNavigationButtonClick(object sender, RoutedEventArgs e)
         {
             NavigationButton? ClickedButton = e.OriginalSource as NavigationButton;
 

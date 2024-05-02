@@ -8,9 +8,16 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Images\UI\PlaceholderImage.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Images\UI\PlaceholderImage.png" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Folder Include="Images\Application\" />
     <Folder Include="Images\Tasks\" />
-    <Folder Include="Images\UI\" />
   </ItemGroup>
 
 </Project>

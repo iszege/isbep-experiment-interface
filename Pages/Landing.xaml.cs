@@ -1,6 +1,7 @@
 ﻿using ExperimentInterface.CustomControls;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -26,9 +27,10 @@ namespace ExperimentInterface.Pages
             InitializeComponent();
         }
 
-        private void OnNavigationClick(object sender, RoutedEventArgs e)
+        private void OnNavigationCardClick(object sender, RoutedEventArgs e)
         {
-            NavigationButton? ClickedButton = e.OriginalSource as NavigationButton;
+            NavigationCard? ClickedButton = e.OriginalSource as NavigationCard;
+            Trace.WriteLine(ClickedButton);
 
             if (ClickedButton != null)
             {

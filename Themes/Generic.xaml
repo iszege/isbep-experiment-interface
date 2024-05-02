@@ -58,11 +58,11 @@
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
 
-                            <Border Name="ImageBorder" Grid.Row="0" BorderBrush="Gray" BorderThickness="1" Margin="30,30,30,10">
+                            <Border Name="ImageBorder" Grid.Row="0" BorderBrush="Gray" BorderThickness="0" Margin="30,40,30,0">
                                 <Image Source="{TemplateBinding ImageSource}" Stretch="Uniform"/>
                             </Border>
 
-                            <Border Name="TextBorder" Grid.Row="1" BorderBrush="Gray" BorderThickness="1" Margin="20,0,20,20">
+                            <Border Name="TextBorder" Grid.Row="1" BorderBrush="Gray" BorderThickness="0" Margin="20,0,20,30">
                                 <TextBlock Text="{TemplateBinding Text}"
                                            HorizontalAlignment="Center" VerticalAlignment="Center"
                                            TextAlignment="Center" TextWrapping="Wrap"/>

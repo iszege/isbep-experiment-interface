@@ -60,5 +60,6 @@ namespace ExperimentInterface.CustomControls
         // Using a DependencyProperty as the backing store for ImageSource.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty ImageSourceProperty =
             DependencyProperty.Register("ImageSource", typeof(ImageSource), typeof(ApplicationControl), new PropertyMetadata(null));
+
     }
 }

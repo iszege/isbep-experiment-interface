@@ -50,12 +50,21 @@
                     VerticalAlignment="Top"
                     Orientation="Horizontal">
 
-            <cc:ApplicationControl ImageSource="/Images/UI/Maximize.png"
-                                   MaxWidth="25" 
-                                   Click="OnCloseButtonClick"/>
+            <cc:ApplicationControl x:Name="MaximizeButton"
+                                   Visibility="Visible"
+                                   ImageSource="/Images/UI/Maximize.png"
+                                   MaxWidth="30" 
+                                   Click="OnResizeButtonClick"/>
             
-            <cc:ApplicationControl ImageSource="/Images/UI/Close.png"
-                                   MaxWidth="25" Margin="5,0,0,0"
+            <cc:ApplicationControl x:Name="MinimizeButton"
+                                   Visibility="Collapsed"
+                                   ImageSource="/Images/UI/Minimize.png"
+                                   MaxWidth="30" 
+                                   Click="OnResizeButtonClick"/>
+            
+            <cc:ApplicationControl x:Name="CloseButton"
+                                   ImageSource="/Images/UI/Close.png"
+                                   MaxWidth="30" Margin="5,0,0,0"
                                    Click="OnCloseButtonClick"/>
 
         </StackPanel>

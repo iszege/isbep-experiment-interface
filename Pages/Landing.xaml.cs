@@ -37,5 +37,10 @@ namespace ExperimentInterface.Pages
                 NavigationService.Navigate(ClickedButton.NavigationUri);
             }
         }
+
+        private void OnCloseButtonClick(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

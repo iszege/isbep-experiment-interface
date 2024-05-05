@@ -54,7 +54,7 @@
 
                 
                 
-                <Line x:Name="SeperatorLine"
+                <Line x:Name="SeparatorLine"
                       Grid.Row="1" Grid.ColumnSpan="2"
                       HorizontalAlignment="Stretch"
                       VerticalAlignment="Center"
@@ -71,22 +71,19 @@
                             Orientation="Horizontal" 
                             ButtonBase.Click="OnNextTaskButtonClick">
 
-                    <cc:NavigationButton x:Name="BackButton" 
-                                         Background="LightGray" Foreground="Black"
-                                         BorderBrush="Black" BorderThickness="2"
-                                         Width="175" Height="40" CornerRadius="10"
-                                         Content="Back" FontFamily="Roboto"
-                                         FontSize="16" FontWeight="DemiBold"
-                                         Margin="5"
-                                         />
-
-                    <cc:NavigationButton x:Name="StartButton"
-                                         Background="Black" Foreground="White"
-                                         Width="175" Height="40" CornerRadius="10"
-                                         Content="Start Task" FontFamily="Roboto"
-                                         FontSize="16" FontWeight="DemiBold"
-                                         Margin="5"
-                                         />
+                    <cc:TaskButton x:Name="NextButton" 
+                                   Margin="5"
+                                   Background="LightGray"
+                                   Foreground="Black"
+                                   Width="100" Height="80"
+                                   CornerRadius="10"
+                                   BorderBrush="Black"
+                                   BorderThickness="2"
+                                   ImageSource="/Images/UI/PlaceholderImageSource.png" 
+                                   Text="Next Item" 
+                                   FontFamily="Roboto"
+                                   FontSize="16" FontWeight="DemiBold"
+                                   />
 
                 </StackPanel>
 

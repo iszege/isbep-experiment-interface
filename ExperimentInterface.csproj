@@ -12,6 +12,7 @@
     <None Remove="Images\UI\Maximize.png" />
     <None Remove="Images\UI\Minimize.png" />
     <None Remove="Images\UI\PlaceholderImage.png" />
+    <None Remove="Images\UI\PlaceholderImageSource.png" />
     <None Remove="Images\UI\Settings.png" />
   </ItemGroup>
 
@@ -20,6 +21,7 @@
     <Resource Include="Images\UI\Maximize.png" />
     <Resource Include="Images\UI\Minimize.png" />
     <Resource Include="Images\UI\PlaceholderImage.png" />
+    <Resource Include="Images\UI\PlaceholderImageSource.png" />
     <Resource Include="Images\UI\Settings.png" />
   </ItemGroup>
 

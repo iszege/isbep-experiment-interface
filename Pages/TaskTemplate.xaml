@@ -52,16 +52,18 @@
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
 
-                <Rectangle x:Name="SeperatorLine" 
-                           Grid.Row="1" Grid.ColumnSpan="2"
-                           HorizontalAlignment="Stretch" 
-                           VerticalAlignment="Center"
-                           Margin="10,0,10,0"
-                           Height="2" 
-                           Fill="Black"
-                           StrokeThickness="2"
-                           StrokeDashArray="3 1"
-                           SnapsToDevicePixels="True"/>
+                
+                
+                <Line x:Name="SeperatorLine"
+                      Grid.Row="1" Grid.ColumnSpan="2"
+                      HorizontalAlignment="Stretch"
+                      VerticalAlignment="Center"
+                      Margin="15,0,15,0"
+                      X1="0" X2="1"
+                      Stretch="Fill"
+                      Stroke="Black"
+                      StrokeThickness="2"
+                      StrokeDashArray="5 3"/>
 
                 <StackPanel x:Name="DefaultControls" 
                             Grid.Row="2" Grid.Column="0"

@@ -32,7 +32,6 @@ namespace ExperimentInterface.Pages
         private void OnNavigationCardClick(object sender, RoutedEventArgs e)
         {
             NavigationCard? ClickedButton = e.OriginalSource as NavigationCard;
-            Trace.WriteLine(ClickedButton);
 
             if (ClickedButton != null)
             {

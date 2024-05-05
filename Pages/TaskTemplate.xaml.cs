@@ -1,10 +1,13 @@
-﻿using System;
+﻿using ExperimentInterface.CustomControls;
+using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
@@ -28,6 +31,16 @@ namespace ExperimentInterface.Pages
         private void OnNextTaskButtonClick(object sender, RoutedEventArgs e)
         {
 
+        }
+
+        private void OnFeedbackSubmitted(object sender, RoutedEventArgs e)
+        {
+            TaskButton? ClickedButton = e.OriginalSource as TaskButton;
+
+            if (ClickedButton == HumanButton)
+                Trace.WriteLine("Send this item to a human worker in the future");
+            else
+                Trace.WriteLine("Send this item to the robot arm in the future");
         }
     }
 }

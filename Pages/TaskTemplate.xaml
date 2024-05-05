@@ -63,29 +63,108 @@
                       Stretch="Fill"
                       Stroke="Black"
                       StrokeThickness="2"
-                      StrokeDashArray="5 3"/>
+                      StrokeDashArray="6 3"/>
 
-                <StackPanel x:Name="DefaultControls" 
-                            Grid.Row="2" Grid.Column="0"
-                            Grid.ColumnSpan="2" HorizontalAlignment="Center"
-                            Orientation="Horizontal" 
-                            ButtonBase.Click="OnNextTaskButtonClick">
+                <Grid x:Name="DefaultControls"
+                      Visibility="Visible"
+                      ButtonBase.Click="OnNextTaskButtonClick"
+                      Grid.Row="2" Grid.Column="0"
+                      Grid.ColumnSpan="2"
+                      Margin="0,0,0,5">
 
-                    <cc:TaskButton x:Name="NextButton" 
-                                   Margin="5"
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="2*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="2*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <cc:TaskButton x:Name="NextButton"
+                                   Grid.Column="1"
+                                   Margin="10,0,10,0"
+                                   HorizontalAlignment="Stretch"
                                    Background="LightGray"
                                    Foreground="Black"
-                                   Width="100" Height="80"
                                    CornerRadius="10"
                                    BorderBrush="Black"
                                    BorderThickness="2"
                                    ImageSource="/Images/UI/PlaceholderImageSource.png" 
                                    Text="Next Item" 
                                    FontFamily="Roboto"
+                                   FontSize="16" FontWeight="DemiBold"/>
+
+                </Grid>
+                
+                <Grid x:Name="FeedbackControlButtons"
+                      Visibility="Collapsed"
+                      ButtonBase.Click="OnFeedbackSubmitted"
+                      Grid.Row="2" Grid.Column="0"
+                      Grid.ColumnSpan="2"
+                      Margin="0,0,0,5">
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="1.2*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <cc:TaskButton x:Name="RobotButton" 
+                                   Grid.Column="1"
+                                   Margin="15,0,15,0"
+                                   Background="LightGray"
+                                   Foreground="Black"
+                                   CornerRadius="10"
+                                   BorderBrush="Black"
+                                   BorderThickness="2"
+                                   ImageSource="/Images/UI/PlaceholderImageSource.png" 
+                                   Text="To the Robot" 
+                                   FontFamily="Roboto"
                                    FontSize="16" FontWeight="DemiBold"
                                    />
 
-                </StackPanel>
+                    <StackPanel Grid.Column="2" 
+                                Margin="5" 
+                                VerticalAlignment="Center">
+                        
+                        <TextBlock FontFamily="Roboto" 
+                                   FontSize="18"
+                                   FontWeight="DemiBold"
+                                   HorizontalAlignment="Center">
+                            Feedback Wanted
+                        </TextBlock>
+                        
+                        <TextBlock FontFamily="Roboto" 
+                                   FontSize="14"
+                                   HorizontalAlignment="Center"
+                                   TextAlignment="Center"
+                                   TextWrapping="Wrap"
+                                   Margin="0,5,0,0">
+                            Where should this item be sent to in the future?
+                        </TextBlock>
+
+                        <TextBlock Text="&#x27F7;"
+                                   FontFamily="Roboto"
+                                   FontSize="20"
+                                   HorizontalAlignment="Center"/>
+
+                    </StackPanel>
+
+                    <cc:TaskButton x:Name="HumanButton" 
+                                Grid.Column="3"
+                                Margin="15,0,15,0"
+                                Background="LightGray"
+                                Foreground="Black"
+                                CornerRadius="10"
+                                BorderBrush="Black"
+                                BorderThickness="2"
+                                ImageSource="/Images/UI/PlaceholderImageSource.png" 
+                                Text="To a human" 
+                                FontFamily="Roboto"
+                                FontSize="16" FontWeight="DemiBold"
+                                />
+
+                </Grid>
 
             </Grid>
             

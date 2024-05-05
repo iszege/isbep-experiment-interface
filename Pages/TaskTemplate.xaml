@@ -1,0 +1,101 @@
+﻿<Page x:Class="ExperimentInterface.Pages.TaskTemplate"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:ExperimentInterface.Pages"
+      xmlns:cc="clr-namespace:ExperimentInterface.CustomControls"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="TaskTemplate">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="4.2*"/>
+            <RowDefinition Height="0.5*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="12*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <Border x:Name="TaskBorder" Grid.Row="0" Grid.Column="1"
+                CornerRadius="10" Margin="10,10,10,10"
+                VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+
+            <Border.Effect>
+                <DropShadowEffect Color="Gray" Opacity="0.2"
+                                    Direction="270"/>
+            </Border.Effect>
+
+            <Border.Background>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="1,2">
+                    <GradientStop Color="White" Offset="0.0"/>
+                    <GradientStop Color="LightGray" Offset="1.5"/>
+                </LinearGradientBrush>
+            </Border.Background>
+
+            <!--<Label x:Name="TitleLabel" Content="Interaction Task" 
+                   HorizontalContentAlignment="Center" 
+                   VerticalContentAlignment="Center" 
+                   FontSize="32" FontWeight="DemiBold"/>-->
+
+            <Grid x:Name="TaskGrid" Grid.Row="1" Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="3*"/>
+                    <RowDefinition Height="0.2*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <Rectangle x:Name="SeperatorLine" 
+                           Grid.Row="1" Grid.ColumnSpan="2"
+                           HorizontalAlignment="Stretch" 
+                           VerticalAlignment="Center"
+                           Margin="10,0,10,0"
+                           Height="2" 
+                           Fill="Black"
+                           StrokeThickness="2"
+                           StrokeDashArray="3 1"
+                           SnapsToDevicePixels="True"/>
+
+                <StackPanel x:Name="DefaultControls" 
+                            Grid.Row="2" Grid.Column="0"
+                            Grid.ColumnSpan="2" HorizontalAlignment="Center"
+                            Orientation="Horizontal" 
+                            ButtonBase.Click="OnNextTaskButtonClick">
+
+                    <cc:NavigationButton x:Name="BackButton" 
+                                         Background="LightGray" Foreground="Black"
+                                         BorderBrush="Black" BorderThickness="2"
+                                         Width="175" Height="40" CornerRadius="10"
+                                         Content="Back" FontFamily="Roboto"
+                                         FontSize="16" FontWeight="DemiBold"
+                                         Margin="5"
+                                         />
+
+                    <cc:NavigationButton x:Name="StartButton"
+                                         Background="Black" Foreground="White"
+                                         Width="175" Height="40" CornerRadius="10"
+                                         Content="Start Task" FontFamily="Roboto"
+                                         FontSize="16" FontWeight="DemiBold"
+                                         Margin="5"
+                                         />
+
+                </StackPanel>
+
+            </Grid>
+            
+        </Border>
+
+
+        <Border x:Name="ToolbarBorder"
+                Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3"
+                Background="Black" Margin="0,0,0,0" />
+
+    </Grid>
+</Page>

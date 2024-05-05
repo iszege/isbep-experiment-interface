@@ -48,7 +48,8 @@
                     Grid.Row="0" Grid.Column="2"
                     HorizontalAlignment="Right"
                     VerticalAlignment="Top"
-                    Orientation="Horizontal">
+                    Orientation="Horizontal"
+                    Margin="0,5,5,0">
 
             <cc:ApplicationControl x:Name="MaximizeButton"
                                    Visibility="Visible"

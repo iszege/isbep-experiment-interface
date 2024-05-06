@@ -22,7 +22,8 @@ namespace ExperimentInterface.Pages
     /// </summary>
     public partial class Landing : Page
     {
-        Window mainWindow = Application.Current.MainWindow;
+        Window window = Application.Current.MainWindow as Window;
+        MainWindow? mainWindow = Application.Current.MainWindow as MainWindow;
 
         public Landing()
         {
@@ -41,20 +42,19 @@ namespace ExperimentInterface.Pages
 
         private void OnCloseButtonClick(object sender, RoutedEventArgs e)
         {
-            mainWindow.Close();
+            window.Close();
         }
 
         private void OnResizeButtonClick(object sender, RoutedEventArgs e)
         {
-            MainWindow? window = mainWindow as MainWindow;
-            if (window != null) window.ToggleFullscreen();
+            if (mainWindow != null) mainWindow.ToggleFullscreen();
 
             UpdateResizeIcon();
         }
 
         private void UpdateResizeIcon()
         {
-            switch (mainWindow.WindowState)
+            switch (window.WindowState)
             {
                 case WindowState.Normal:
                     MaximizeButton.Visibility = Visibility.Visible;

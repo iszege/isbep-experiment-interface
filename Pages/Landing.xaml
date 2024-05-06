@@ -44,6 +44,32 @@
             
         </Border>
 
+        <StackPanel x:Name="ApplicationControls"
+                    Grid.Row="0" Grid.Column="2"
+                    HorizontalAlignment="Right"
+                    VerticalAlignment="Top"
+                    Orientation="Horizontal"
+                    Margin="0,5,5,0">
+
+            <cc:ApplicationControl x:Name="MaximizeButton"
+                                   Visibility="Visible"
+                                   ImageSource="/Images/UI/Maximize.png"
+                                   MaxWidth="30" 
+                                   Click="OnResizeButtonClick"/>
+            
+            <cc:ApplicationControl x:Name="MinimizeButton"
+                                   Visibility="Collapsed"
+                                   ImageSource="/Images/UI/Minimize.png"
+                                   MaxWidth="30" 
+                                   Click="OnResizeButtonClick"/>
+            
+            <cc:ApplicationControl x:Name="CloseButton"
+                                   ImageSource="/Images/UI/Close.png"
+                                   MaxWidth="30" Margin="5,0,0,0"
+                                   Click="OnCloseButtonClick"/>
+
+        </StackPanel>
+
         <Grid x:Name="InteractionSelection" Grid.Row="1" Grid.Column="1"
               Margin="0,50,0,50"
               ButtonBase.Click="OnNavigationCardClick">

@@ -70,7 +70,7 @@
                                      />
 
                 <cc:NavigationButton x:Name="StartButton"
-                                     NavigationUri="/Pages/Landing.xaml"
+                                     NavigationUri="/Pages/TaskTemplate.xaml"
                                      Background="Black" Foreground="White"
                                      Width="175" Height="40" CornerRadius="10"
                                      Content="Start Task" FontFamily="Roboto"

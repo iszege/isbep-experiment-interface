@@ -7,8 +7,10 @@ namespace ExperimentInterface.Backend
 {
     internal class DataManager
     {
-        string dataURI = "../Data/Tasks.csv";
-        string savePath;
+        private string dataURI = "../Data/Tasks.csv";
+        private string savePath;
+
+        private bool writing = false;
 
         internal DataManager()
         {
@@ -22,7 +24,7 @@ namespace ExperimentInterface.Backend
         /// Reads tasks from CSV into memory
         /// </summary>
         /// <returns>A list of <c>Task</c> objects</returns>
-        internal List<Task> ReadTasks()
+        private List<Task> ReadTasks()
         {
             List<Task> tasks = new List<Task>();
 
@@ -69,14 +71,18 @@ namespace ExperimentInterface.Backend
         /// Writes a given list of <c>TaskResult</c>s into Results.csv
         /// </summary>
         /// <param name="results"></param>
-        internal void WriteResults(List<TaskResult> results)
+        private void WriteResults(List<TaskResult> results)
         {
             using (StreamWriter outputFile = new StreamWriter(System.IO.Path.Combine(savePath, "Results.csv"), true))
             {
+                writing = true;
+
                 foreach (TaskResult result in results)
                 {
                     outputFile.WriteLine(ResultToRow(result));
                 }
+
+                writing = false;
             }
         }
 
@@ -93,6 +99,17 @@ namespace ExperimentInterface.Backend
         #endregion
 
         #region Handles
+
+        internal void Save(List<TaskResult> results)
+        {
+            Trace.WriteLine("Now Saving!");
+            WriteResults(results);
+        }
+
+        internal List<Task> Load() { return ReadTasks(); }
+
+        internal bool IsWriting() { return writing; }
+
         #endregion
     }
 }

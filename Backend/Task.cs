@@ -12,13 +12,15 @@ namespace ExperimentInterface.Backend
     /// </summary>
     internal class Task
     {
-        internal int ID;
-        internal string Name;
-        internal int Amount;
+        internal int id;
+        internal string name;
+        internal int amount;
 
-        public Task()
+        public Task(int id, string name, int amount)
         {
-
+            this.id = id;
+            this.name = name;
+            this.amount = amount;
         }
     }
 }

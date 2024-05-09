@@ -37,7 +37,7 @@
                 </LinearGradientBrush>
             </Border.Background>
 
-            <Label x:Name="TitleLabel" Content="Interaction Task" 
+            <Label x:Name="TitleLabel" Content="Instructions" 
                    HorizontalContentAlignment="Center" 
                    VerticalContentAlignment="Center" 
                    FontSize="32" FontWeight="DemiBold"/>

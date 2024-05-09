@@ -13,15 +13,20 @@ namespace ExperimentInterface.Backend
     internal class TaskResult
     {
         internal int participantID;
-        internal int interactionMehod;
-        internal TimeSpan timeTaken;
+        internal int interactionMethod;
+        internal int taskID;
+        internal int secondsTaken;
         internal bool feedbackTask;
         internal bool givenFeedback;
-        internal int taskID;
 
-        internal TaskResult()
+        internal TaskResult(int participantID, int interactionMethod, int taskID, int secondsTaken, bool feedbackTask, bool givenFeedback)
         {
-
+            this.participantID = participantID;
+            this.interactionMethod = interactionMethod;
+            this.taskID = taskID;
+            this.secondsTaken = secondsTaken;
+            this.feedbackTask = feedbackTask;
+            this.givenFeedback = givenFeedback;
         }
     }
 }

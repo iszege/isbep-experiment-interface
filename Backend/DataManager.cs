@@ -2,35 +2,35 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Shapes;
-using static System.Formats.Asn1.AsnWriter;
 
 namespace ExperimentInterface.Backend
 {
     internal class DataManager
     {
-        string docPath;
+        string dataURI = "../Data/Tasks.csv";
+        string savePath;
 
         internal DataManager()
         {
-            docPath = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + "\\ISBEP\\ISBEP Experiment Interface";
-            Directory.CreateDirectory(docPath);
+            savePath = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + "\\ISBEP\\ISBEP Experiment Interface";
+            Directory.CreateDirectory(savePath);
         }
 
         #region Task Reading and Conversion
 
+        /// <summary>
+        /// Reads tasks from CSV into memory
+        /// </summary>
+        /// <returns>A list of <c>Task</c> objects</returns>
         internal List<Task> ReadTasks()
         {
             List<Task> tasks = new List<Task>();
 
             try
             {
-                using (StreamReader inputFile = new StreamReader(System.IO.Path.Combine(docPath, "Items.csv"))) //TODO: Make relative?
+                using (StreamReader inputFile = new StreamReader(System.IO.Path.GetFullPath(dataURI)))
                 {
-                    string row;
+                    string? row;
 
                     while ((row = inputFile.ReadLine()) != null)
                     {
@@ -42,21 +42,36 @@ namespace ExperimentInterface.Backend
             {
                 Trace.TraceError(e.Message);
             }
+
             return tasks;
         }
 
+        /// <summary>
+        /// Converts CSV row into Task object. Expects input row to be formatted as <c>[ID, Name, Amount]</c>
+        /// </summary>
+        /// <param name="row"></param>
+        /// <returns>A <c>Task</c> object representation of the CSV row</returns>
         private Task RowToTask(string row)
         {
-            return null;
+            string[] columns = row.Split(',');
+
+            int id = (Int32.TryParse(columns[0], out int parsedID)) ? parsedID : 0;
+            int amount = (Int32.TryParse(columns[2], out int parsedAmount)) ? parsedAmount : 0;
+
+            return new Task(id, columns[1], amount);
         }
 
         #endregion
 
         #region Result Writing and Conversion
 
+        /// <summary>
+        /// Writes a given list of <c>TaskResult</c>s into Results.csv
+        /// </summary>
+        /// <param name="results"></param>
         internal void WriteResults(List<TaskResult> results)
         {
-            using (StreamWriter outputFile = new StreamWriter(System.IO.Path.Combine(docPath, "Results.csv"), true))
+            using (StreamWriter outputFile = new StreamWriter(System.IO.Path.Combine(savePath, "Results.csv"), true))
             {
                 foreach (TaskResult result in results)
                 {
@@ -65,9 +80,14 @@ namespace ExperimentInterface.Backend
             }
         }
 
+        /// <summary>
+        /// Converts a given <c>TaskResult</c> into a CSV row. To support the data analysis, saves booleans as integers
+        /// </summary>
+        /// <param name="result"></param>
+        /// <returns>A comma separated <c>string</c> describing a result</returns>
         private string ResultToRow(TaskResult result)
         {
-            return null;
+            return $"{result.taskID}, {result.interactionMethod}, {result.taskID}, {result.secondsTaken}, {(result.feedbackTask ? 1 : 0)}, {(result.givenFeedback ? 1 : 0)}";
         }
 
         #endregion

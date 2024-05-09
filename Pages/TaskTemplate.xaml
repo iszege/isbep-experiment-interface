@@ -127,9 +127,7 @@
                                FontSize="14"
                                TextWrapping="Wrap"
                                Margin="10">
-                        Description of the the current task goes here.
-                        I will likely keep this short and to-the-point, maybe
-                        using bullet points? 
+                        A brief description of the the current task goes here.
                         
                         <LineBreak/><LineBreak/>
                         

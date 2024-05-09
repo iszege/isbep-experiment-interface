@@ -6,6 +6,9 @@ using System.Reflection;
 
 namespace ExperimentInterface.Backend
 {
+    /// <summary>
+    /// Class that handles reading from and writing to disk. Allows for loading tasks and saving results.
+    /// </summary>
     internal class DataManager
     {
         private string data = "ExperimentInterface.Data.Tasks.csv";

@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ExperimentInterface.Backend
+﻿namespace ExperimentInterface.Backend
 {
     /// <summary>
     /// Represents a task to be completed by the participant.

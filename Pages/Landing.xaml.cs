@@ -28,6 +28,7 @@ namespace ExperimentInterface.Pages
         public Landing()
         {
             InitializeComponent();
+            Trace.WriteLine(mainWindow.dataManager.Load());
         }
 
         private void OnNavigationCardClick(object sender, RoutedEventArgs e)

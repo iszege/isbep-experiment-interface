@@ -2,12 +2,13 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
+using System.Reflection;
 
 namespace ExperimentInterface.Backend
 {
     internal class DataManager
     {
-        private string dataURI = "../Data/Tasks.csv";
+        private string data = "ExperimentInterface.Data.Tasks.csv";
         private string savePath;
 
         private bool writing = false;
@@ -30,11 +31,12 @@ namespace ExperimentInterface.Backend
 
             try
             {
-                using (StreamReader inputFile = new StreamReader(System.IO.Path.GetFullPath(dataURI)))
+                using (Stream? stream = Assembly.GetExecutingAssembly().GetManifestResourceStream(data))
+                using (StreamReader reader = new StreamReader(stream))
                 {
                     string? row;
 
-                    while ((row = inputFile.ReadLine()) != null)
+                    while ((row = reader.ReadLine()) != null)
                     {
                         tasks.Add(RowToTask(row));
                     }

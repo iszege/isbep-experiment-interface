@@ -12,19 +12,32 @@ namespace ExperimentInterface.Backend
     internal class TaskManager
     {
         private DataManager dataManager = new DataManager();
-        private List<Task> tasks = new List<Task>();
         private Random random = new Random();
+        
+        private List<Task> tasks = new List<Task>();
+        private List<TaskResult> results = new List<TaskResult>();
         
         internal TaskManager()
         {
             LoadTasks();
         }
 
+        #region Loading and Saving
+        
         private void LoadTasks()
         {
             tasks = dataManager.Load();
             tasks = tasks.OrderBy(_ => random.Next()).ToList();
         }
+
+        internal void SaveResults()
+        {
+
+        }
+
+        #endregion
+
+        #region Generating and Presenting Tasks
 
         internal Task GetNextTask()
         {
@@ -47,5 +60,16 @@ namespace ExperimentInterface.Backend
             return new string[] { amount.ToString(), side };
         }
 
+        #endregion
+
+        #region Retrieving and Storing Results
+
+        internal void AddResult(ParticipantData participant, Task task, int secondsTaken, bool feedbackTask, bool givenFeedback)
+        {
+            TaskResult result = new TaskResult(participant.ID, participant.Interaction, task, secondsTaken, feedbackTask, givenFeedback);
+            results.Add(result);
+        }
+
+        #endregion
     }
 }

@@ -98,7 +98,7 @@ namespace ExperimentInterface.Backend
         /// <returns>A comma separated <c>string</c> describing a result</returns>
         private string ResultToRow(TaskResult result)
         {
-            return $"{result.taskID}, {result.interactionMethod}, {result.taskID}, {result.secondsTaken}, {(result.feedbackTask ? 1 : 0)}, {(result.givenFeedback ? 1 : 0)}";
+            return $"{result.participantID}, {result.interactionMethod}, {result.task.id}, {result.secondsTaken}, {(result.feedbackTask ? 1 : 0)}, {(result.givenFeedback ? 1 : 0)}";
         }
 
         #endregion

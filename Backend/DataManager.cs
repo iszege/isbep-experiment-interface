@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
+using System.Linq;
 using System.Reflection;
 
 namespace ExperimentInterface.Backend
@@ -114,6 +115,27 @@ namespace ExperimentInterface.Backend
         internal List<Task> Load() { return ReadTasks(); }
 
         internal bool IsWriting() { return writing; }
+
+        internal int GetLastParticipantID()
+        {
+            int participantID = 0;
+
+            try
+            {
+                string lastLine = File.ReadLines(System.IO.Path.Combine(savePath, "Results.csv")).Last();
+
+                if (lastLine != null)
+                {
+                    participantID = (Int32.TryParse(lastLine.Split(",")[0], out int parsedID)) ? parsedID : 0;
+                }
+            }
+            catch (FileNotFoundException e)
+            {
+                Trace.TraceError(e.Message);
+            }
+
+            return participantID;
+        }
 
         #endregion
     }

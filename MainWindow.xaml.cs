@@ -21,8 +21,7 @@ namespace ExperimentInterface
     /// </summary>
     public partial class MainWindow : Window
     {
-        internal Backend.TaskManager taskManager = new();
-        internal Backend.ParticipantData participant = new();
+        internal Backend.Session session = new();
 
         public MainWindow()
         {

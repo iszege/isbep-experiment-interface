@@ -70,5 +70,15 @@ namespace ExperimentInterface.Pages
                     break;
             }
         }
+
+        private void OnToolbarButtonClick(object sender, RoutedEventArgs e)
+        {
+            ToolbarButton? ClickedButton = e.OriginalSource as ToolbarButton;
+
+            if (ClickedButton != null)
+            {
+                NavigationService.Navigate(ClickedButton.NavigationUri);
+            }
+        }
     }
 }

@@ -131,7 +131,9 @@
                           Margin="0,0,10,0"
                           VerticalAlignment="Center"
                           HorizontalAlignment="Right"
-                          ImageSource="/Images/UI/Settings.png"/>
+                          ImageSource="/Images/UI/Settings.png"
+                          NavigationUri="/Pages/Settings.xaml"
+                          ButtonBase.Click="OnToolbarButtonClick"/>
 
     </Grid>
 </Page>

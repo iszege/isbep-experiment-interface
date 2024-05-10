@@ -1,0 +1,85 @@
+﻿<Page x:Class="ExperimentInterface.Pages.Settings"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:ExperimentInterface.Pages"
+      xmlns:cc="clr-namespace:ExperimentInterface.CustomControls"
+      mc:Ignorable="d" 
+      d:DesignHeight="600" d:DesignWidth="920"
+      Title="Settings">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1.2*"/>
+            <RowDefinition Height="3*"/>
+            <RowDefinition Height="0.5*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="5*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <Border x:Name="TitleBorder" Grid.Row="0" Grid.Column="1"
+                CornerRadius="10" Margin="10,15,10,15"
+                VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+
+            <Border.Effect>
+                <DropShadowEffect Color="Gray" Opacity="0.2"
+                                    Direction="270"/>
+            </Border.Effect>
+
+            <Border.Background>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="1,2">
+                    <GradientStop Color="White" Offset="0.0"/>
+                    <GradientStop Color="LightGray" Offset="1.5"/>
+                </LinearGradientBrush>
+            </Border.Background>
+
+            <Label x:Name="TitleLabel" Content="Settings" 
+                   HorizontalContentAlignment="Center" 
+                   VerticalContentAlignment="Center" 
+                   FontSize="32" FontWeight="DemiBold"/>
+
+        </Border>
+
+        <Grid x:Name="PageContent" Grid.Row="1" Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="2*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            
+
+            <StackPanel x:Name="NavigationPanel" Grid.Row="2"
+                        Orientation="Horizontal" HorizontalAlignment="Center"
+                        ButtonBase.Click="OnNavigationButtonClick">
+
+                <cc:NavigationButton x:Name="CancelButton"
+                                     Background="LightGray" Foreground="Black"
+                                     BorderBrush="Black" BorderThickness="2"
+                                     Width="175" Height="40" CornerRadius="10"
+                                     Content="Cancel" FontFamily="Roboto"
+                                     FontSize="16" FontWeight="DemiBold"
+                                     Margin="5"
+                                     />
+
+                <cc:NavigationButton x:Name="SaveButton"
+                                     Background="Black" Foreground="White"
+                                     Width="175" Height="40" CornerRadius="10"
+                                     Content="Save Changes" FontFamily="Roboto"
+                                     FontSize="16" FontWeight="DemiBold"
+                                     Margin="5"
+                                     />
+
+            </StackPanel>
+
+        </Grid>
+
+        <Border x:Name="ToolbarBorder"
+                Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3"
+                Background="Black" Margin="0,0,0,0" />
+
+    </Grid>
+</Page>

@@ -116,5 +116,22 @@
                 Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3"
                 Background="Black" Margin="0,0,0,0" />
 
+        <Label x:Name="ParticipantID"
+               Grid.Row="2" Grid.Column="1"
+               Content="Participant #"
+               Foreground="LightGray"
+               HorizontalContentAlignment="Center"
+               VerticalContentAlignment="Center"
+               FontFamily="Roboto" FontSize="18"
+               FontStyle="Italic" FontWeight="DemiBold"/>
+
+        <cc:ToolbarButton x:Name="Settings"
+                          Grid.Row="2" Grid.Column="2"
+                          MaxWidth="50"
+                          Margin="0,0,10,0"
+                          VerticalAlignment="Center"
+                          HorizontalAlignment="Right"
+                          ImageSource="/Images/UI/Settings.png"/>
+
     </Grid>
 </Page>

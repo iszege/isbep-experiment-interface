@@ -28,6 +28,7 @@ namespace ExperimentInterface.Pages
         public Landing()
         {
             InitializeComponent();
+            UpdateUI();
         }
 
         private void OnNavigationCardClick(object sender, RoutedEventArgs e)
@@ -79,6 +80,14 @@ namespace ExperimentInterface.Pages
             {
                 NavigationService.Navigate(ClickedButton.NavigationUri);
             }
+        }
+
+        /// <summary>
+        /// If needed, updates UI elements upon reloading the page
+        /// </summary>
+        private void UpdateUI()
+        {
+            ParticipantID.Content = $"Participant #{mainWindow.session.participantData.ID}";
         }
     }
 }

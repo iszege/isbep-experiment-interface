@@ -50,9 +50,41 @@
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
-            
+            <StackPanel x:Name="SettingsPanel" Grid.Row="0"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center">
 
-            <StackPanel x:Name="NavigationPanel" Grid.Row="2"
+                <TextBlock x:Name="CurrentParticipantText" 
+                           Margin="10" FontSize="18"
+                           TextAlignment="Center" Foreground="Black"
+                           Visibility="Visible">
+                    The current participant is participant #X.
+                    <LineBreak/>
+                    Set up a new participant profile?
+                </TextBlock>
+                
+                <TextBlock x:Name="NewParticipantText" 
+                           Margin="10" FontSize="18"
+                           TextAlignment="Center" Foreground="DarkSlateGray"
+                           FontStyle="Italic"
+                           Visibility="Collapsed">
+                    A new participant profile will be created!
+                </TextBlock>
+
+                <cc:NavigationButton x:Name="NewParticipant"
+                                     Background="Orange" 
+                                     Foreground="White"
+                                     Width="150" Height="35" CornerRadius="10"
+                                     Content="New Participant"
+                                     FontFamily="Roboto"
+                                     FontSize="16" FontWeight="DemiBold"
+                                     Margin="5"
+                                     ButtonBase.Click="OnNewParticipantClick"
+                                     />
+
+            </StackPanel>
+
+            <StackPanel x:Name="NavigationPanel" Grid.Row="1"
                         Orientation="Horizontal" HorizontalAlignment="Center"
                         ButtonBase.Click="OnNavigationButtonClick">
 

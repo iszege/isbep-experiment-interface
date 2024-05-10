@@ -22,6 +22,8 @@ namespace ExperimentInterface.Pages
     /// </summary>
     public partial class Settings : Page
     {
+        MainWindow? mainWindow = Application.Current.MainWindow as MainWindow;
+
         public Settings()
         {
             InitializeComponent();
@@ -33,12 +35,20 @@ namespace ExperimentInterface.Pages
 
             if (ClickedButton == SaveButton)
             {
+                if (mainWindow != null) mainWindow.session.participantData.ID++;
                 NavigationService.GoBack();
             }
             else
             {
                 NavigationService.GoBack();
             }
+        }
+
+        private void OnNewParticipantClick(object sender, RoutedEventArgs e)
+        {
+            CurrentParticipantText.Visibility = Visibility.Collapsed;
+            NewParticipantText.Visibility = Visibility.Visible;
+            NewParticipant.Visibility = Visibility.Collapsed;
         }
     }
 }

@@ -82,12 +82,12 @@
                                    FontWeight="Bold"
                                    Text="Item Name"/>
 
-                        <Border x:Name="ItemPicture"
-                                Grid.Row="1"
+                        <Border Grid.Row="1"
                                 Margin="40,5,40,5"
                                 BorderBrush="LightGray"
                                 BorderThickness="1">
-                            <Image Source="/Images/UI/PlaceholderImageSource.png"/>
+                            <Image x:Name="ItemPicture"
+                                   Source="/Images/UI/PlaceholderImageSource.png"/>
                         </Border>
 
                         <TextBlock x:Name="ItemDetails"
@@ -120,7 +120,8 @@
                                FontWeight="Bold"
                                Text="Task"/>
 
-                    <TextBlock Grid.Row="1"
+                    <TextBlock x:Name="TaskInstructions"
+                               Grid.Row="1"
                                VerticalAlignment="Center"
                                TextAlignment="Center"
                                FontFamily="Roboto"
@@ -185,7 +186,7 @@
 
                 </Grid>
                 
-                <Grid x:Name="FeedbackControlButtons"
+                <Grid x:Name="FeedbackControls"
                       Visibility="Collapsed"
                       ButtonBase.Click="OnFeedbackSubmitted"
                       Grid.Row="2" Grid.Column="0"

@@ -15,6 +15,8 @@ namespace ExperimentInterface.Pages
         MainWindow? mainWindow = Application.Current.MainWindow as MainWindow;
         Stopwatch stopwatch = new Stopwatch();
 
+        Backend.Task? currentTask;
+
         public TaskTemplate()
         {
             InitializeComponent();
@@ -38,6 +40,7 @@ namespace ExperimentInterface.Pages
                 if (NextTask != null)
                 {
                     PopulateFields(NextTask, feedback);
+                    currentTask = NextTask;
                     stopwatch.Restart();
                 }
                 else
@@ -103,6 +106,9 @@ namespace ExperimentInterface.Pages
         /// </summary>
         private void Exit()
         {
+            if (mainWindow != null) mainWindow.session.taskManager.SaveResults();
+            currentTask = null;
+            
             // TODO navigate to a new exit page or simply back to the landing page
         }
 
@@ -110,25 +116,45 @@ namespace ExperimentInterface.Pages
 
         #region Data Collection
 
+        private void SaveResult(bool containsFeedback, bool isPickable)
+        {
+            // Stop the timer to log the time taken for this task
+            stopwatch.Stop();
 
+            // For validation, ensure that isPickable is always false if no feedback was given
+            isPickable = containsFeedback && isPickable;
+
+            // Communicate result to the TaskManager
+            if (mainWindow != null && currentTask != null)
+            {
+                mainWindow.session.taskManager.AddResult(mainWindow.session.participantData,
+                                                         currentTask, 
+                                                         stopwatch.Elapsed.Seconds, 
+                                                         containsFeedback, 
+                                                         isPickable);
+            }
+
+            // Load the next task
+            NextTask();
+        }
 
         #endregion
 
-        #region Button Listeners
+        #region Input Listeners
 
         private void OnNextTaskButtonClick(object sender, RoutedEventArgs e)
         {
-
+            SaveResult(false, false);
         }
 
-        private void OnFeedbackSubmitted(object sender, RoutedEventArgs e)
+        private void OnFeedbackButtonClick(object sender, RoutedEventArgs e)
         {
             TaskButton? ClickedButton = e.OriginalSource as TaskButton;
 
-            if (ClickedButton == HumanButton)
-                Trace.WriteLine("Send this item to a human worker in the future");
+            if (ClickedButton == RobotButton)
+                SaveResult(true, true);
             else
-                Trace.WriteLine("Send this item to the robot arm in the future");
+                SaveResult(true, false);
         }
 
         #endregion

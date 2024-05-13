@@ -48,7 +48,8 @@ namespace ExperimentInterface.Backend
 
         internal void SaveResults()
         {
-
+            dataManager.Save(results);
+            results = new List<TaskResult>();
         }
 
         #endregion

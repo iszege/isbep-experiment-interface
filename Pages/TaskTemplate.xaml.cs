@@ -36,6 +36,7 @@ namespace ExperimentInterface.Pages
                 switch (mainWindow.session.experimentData.Interaction)
                 {
                     case 1:
+                        FeedbackButtons.Visibility = Visibility.Visible;
                         break;
 
                     case 2:

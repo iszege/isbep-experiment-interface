@@ -7,6 +7,6 @@
     internal class Session
     {
         internal TaskManager taskManager = new();
-        internal ParticipantData participantData = new();
+        internal ExperimentData experimentData = new();
     }
 }

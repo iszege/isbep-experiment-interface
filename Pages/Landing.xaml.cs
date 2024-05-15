@@ -35,6 +35,15 @@ namespace ExperimentInterface.Pages
         {
             NavigationCard? ClickedButton = e.OriginalSource as NavigationCard;
 
+            // Set the current interaction type if applicable
+            if (mainWindow != null)
+            {
+                if (ClickedButton == InteractionMethod1) mainWindow.session.experimentData.Interaction = 1;
+                if (ClickedButton == InteractionMethod2) mainWindow.session.experimentData.Interaction = 2;
+                if (ClickedButton == InteractionMethod3) mainWindow.session.experimentData.Interaction = 3;
+            }
+
+            // In any case, navigate to the specified URI if a NavigationCard was indeed clicked
             if (ClickedButton != null)
             {
                 NavigationService.Navigate(ClickedButton.NavigationUri);
@@ -87,7 +96,7 @@ namespace ExperimentInterface.Pages
         /// </summary>
         private void UpdateUI()
         {
-            ParticipantID.Content = $"Participant #{mainWindow.session.participantData.ID}";
+            ParticipantID.Content = $"Participant #{mainWindow.session.experimentData.ID}";
         }
     }
 }

@@ -9,11 +9,11 @@
         internal int participantID;
         internal int interactionMethod;
         internal Task task;
-        internal int secondsTaken;
+        internal double secondsTaken;
         internal bool feedbackTask;
         internal bool givenFeedback;
 
-        internal TaskResult(int participantID, int interactionMethod, Task task, int secondsTaken, bool feedbackTask, bool givenFeedback)
+        internal TaskResult(int participantID, int interactionMethod, Task task, double secondsTaken, bool feedbackTask, bool givenFeedback)
         {
             this.participantID = participantID;
             this.interactionMethod = interactionMethod;

@@ -102,7 +102,7 @@ namespace ExperimentInterface.Backend
 
         #region Retrieving and Storing Results
 
-        internal void AddResult(ParticipantData participant, Task task, int secondsTaken, bool feedbackTask, bool givenFeedback)
+        internal void AddResult(ExperimentData participant, Task task, double secondsTaken, bool feedbackTask, bool givenFeedback)
         {
             TaskResult result = new TaskResult(participant.ID, participant.Interaction, task, secondsTaken, feedbackTask, givenFeedback);
             results.Add(result);

@@ -27,6 +27,11 @@ namespace ExperimentInterface.Pages
         public Settings()
         {
             InitializeComponent();
+            if (mainWindow != null)
+            {
+                CurrentParticipantText.Text = $"The current participant is participant #{mainWindow.session.experimentData.ID}." +
+                                              $"\n\n Set up a new participant profile ?";
+            }
         }
 
         private void OnNavigationButtonClick(object sender, RoutedEventArgs e)
@@ -35,7 +40,7 @@ namespace ExperimentInterface.Pages
 
             if (ClickedButton == SaveButton)
             {
-                if (mainWindow != null) mainWindow.session.participantData.ID++;
+                if (mainWindow != null) mainWindow.session.experimentData.ID++;
                 NavigationService.GoBack();
             }
             else

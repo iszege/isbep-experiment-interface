@@ -82,6 +82,7 @@ namespace ExperimentInterface.Backend
             using (StreamWriter outputFile = new StreamWriter(System.IO.Path.Combine(savePath, "Results.csv"), true))
             {
                 writing = true;
+                ReportSaveProgress();
 
                 foreach (TaskResult result in results)
                 {
@@ -89,6 +90,7 @@ namespace ExperimentInterface.Backend
                 }
 
                 writing = false;
+                ReportSaveProgress();
             }
         }
 
@@ -100,6 +102,11 @@ namespace ExperimentInterface.Backend
         private string ResultToRow(TaskResult result)
         {
             return $"{result.participantID}, {result.interactionMethod}, {result.task.id}, {result.secondsTaken}, {(result.feedbackTask ? 1 : 0)}, {(result.givenFeedback ? 1 : 0)}";
+        }
+
+        private void ReportSaveProgress()
+        {
+            Trace.WriteLine( writing ? "Now Saving!" : "Saved!" );
         }
 
         #endregion

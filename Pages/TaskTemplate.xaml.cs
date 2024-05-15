@@ -108,7 +108,7 @@ namespace ExperimentInterface.Pages
         {
             if (mainWindow != null) mainWindow.session.taskManager.SaveResults();
             currentTask = null;
-            
+
             // TODO navigate to a new exit page or simply back to the landing page
         }
 
@@ -127,9 +127,9 @@ namespace ExperimentInterface.Pages
             // Communicate result to the TaskManager
             if (mainWindow != null && currentTask != null)
             {
-                mainWindow.session.taskManager.AddResult(mainWindow.session.participantData,
+                mainWindow.session.taskManager.AddResult(mainWindow.session.experimentData,
                                                          currentTask, 
-                                                         stopwatch.Elapsed.Seconds, 
+                                                         stopwatch.Elapsed.TotalSeconds, 
                                                          containsFeedback, 
                                                          isPickable);
             }

@@ -17,8 +17,9 @@ namespace ExperimentInterface.Pages
         Stopwatch stopwatch = new Stopwatch();
 
         VoiceInteraction voiceInteraction = new VoiceInteraction();
-        
         Backend.Task? currentTask;
+
+        Grid? FeedbackControls;
 
         public TaskTemplate()
         {
@@ -26,28 +27,6 @@ namespace ExperimentInterface.Pages
             NextTask();
             VoiceInteraction.FeedbackGiven += VoiceInteraction_FeedbackGiven;
         }
-
-        #region UI Setup
-
-        private void GetInteractionType()
-        {
-            if (mainWindow != null)
-            {
-                switch (mainWindow.session.experimentData.Interaction)
-                {
-                    case 1:
-                        break;
-
-                    case 2:
-                        break;
-
-                    case 3:
-                        break;
-                }
-            }
-        }
-
-        #endregion
 
         #region Task Setup
 
@@ -88,7 +67,36 @@ namespace ExperimentInterface.Pages
 
             // Toggle required controls
             DefaultControls.Visibility = (feedback) ? Visibility.Collapsed : Visibility.Visible;
-            FeedbackControls.Visibility = (feedback) ? Visibility.Visible : Visibility.Collapsed;
+            ToggleFeedbackControls(feedback);
+        }
+
+        /// <summary>
+        /// Enables the active feedback controls for this interaction type, disables all others.
+        /// </summary>
+        private void ToggleFeedbackControls(bool feedback)
+        {
+            if (mainWindow != null)
+            {
+                Grid[] controls = { FeedbackButtons, FeedbackVoice, FeedbackGestures };
+
+                if (feedback)
+                {
+                    for (int i = 1; i <= controls.Length; i++)
+                    {
+                        if (i == mainWindow.session.experimentData.Interaction)
+                            controls[i - 1].Visibility = Visibility.Visible;
+                        else 
+                            controls[i - 1].Visibility = Visibility.Collapsed;
+                    }
+                }
+                else
+                {
+                    foreach (Grid control in controls)
+                    {
+                        control.Visibility = Visibility.Collapsed;
+                    }
+                }
+            }
         }
 
         /// <summary>

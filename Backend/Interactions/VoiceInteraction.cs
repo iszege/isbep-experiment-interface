@@ -12,6 +12,8 @@ namespace ExperimentInterface.Backend.Interactions
     {
         SpeechRecognitionEngine recognizer;
 
+        internal static event Action<bool>? FeedbackGiven;
+
         internal VoiceInteraction()
         {
             // Initialize the SpeechRecognitionEngine
@@ -39,10 +41,12 @@ namespace ExperimentInterface.Backend.Interactions
             {
                 case "yes":
                     Trace.WriteLine("Detected \"Yes\", so send the item to robot");
+                    FeedbackGiven?.Invoke(true);
                     break;
 
                 case "no":
                     Trace.WriteLine("Detected \"No\", so send the item to human");
+                    FeedbackGiven?.Invoke(false);
                     break;
 
                 default:

@@ -1,4 +1,5 @@
-﻿using ExperimentInterface.CustomControls;
+﻿using ExperimentInterface.Backend.Interactions;
+using ExperimentInterface.CustomControls;
 using System;
 using System.Diagnostics;
 using System.Windows;
@@ -15,13 +16,38 @@ namespace ExperimentInterface.Pages
         MainWindow? mainWindow = Application.Current.MainWindow as MainWindow;
         Stopwatch stopwatch = new Stopwatch();
 
+        VoiceInteraction voiceInteraction = new VoiceInteraction();
+        
         Backend.Task? currentTask;
 
         public TaskTemplate()
         {
             InitializeComponent();
             NextTask();
+            VoiceInteraction.FeedbackGiven += VoiceInteraction_FeedbackGiven;
         }
+
+        #region UI Setup
+
+        private void GetInteractionType()
+        {
+            if (mainWindow != null)
+            {
+                switch (mainWindow.session.experimentData.Interaction)
+                {
+                    case 1:
+                        break;
+
+                    case 2:
+                        break;
+
+                    case 3:
+                        break;
+                }
+            }
+        }
+
+        #endregion
 
         #region Task Setup
 
@@ -109,6 +135,9 @@ namespace ExperimentInterface.Pages
             if (mainWindow != null) mainWindow.session.taskManager.SaveResults();
             currentTask = null;
 
+            // Dispose the SpeechRecognitionEngine when ending the voice recognition task
+            if (mainWindow != null && mainWindow.session.experimentData.Interaction == 2) voiceInteraction.Dispose();
+
             // TODO navigate to a new exit page or simply back to the landing page
         }
 
@@ -155,6 +184,11 @@ namespace ExperimentInterface.Pages
                 SaveResult(true, true);
             else
                 SaveResult(true, false);
+        }
+
+        private void VoiceInteraction_FeedbackGiven(bool obj)
+        {
+            Trace.WriteLine(obj);
         }
 
         #endregion

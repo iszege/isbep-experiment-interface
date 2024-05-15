@@ -25,7 +25,6 @@ namespace ExperimentInterface.Pages
     {
         Window window = Application.Current.MainWindow as Window;
         MainWindow? mainWindow = Application.Current.MainWindow as MainWindow;
-        Backend.Interactions.VoiceInteraction voiceInteraction = new Backend.Interactions.VoiceInteraction();
 
         public Landing()
         {

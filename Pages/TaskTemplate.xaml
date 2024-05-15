@@ -185,28 +185,23 @@
                                    FontSize="16" FontWeight="DemiBold"/>
 
                 </Grid>
-
+                
                 <Grid x:Name="FeedbackControls"
                       Visibility="Collapsed"
-                      Grid.Row="2" Grid.Column="0"
-                      Grid.ColumnSpan="2">
-                    
-                    <Grid x:Name="FeedbackButtons"
-                      Visibility="Visible"
                       ButtonBase.Click="OnFeedbackButtonClick"
                       Grid.Row="2" Grid.Column="0"
                       Grid.ColumnSpan="2"
                       Margin="0,0,0,5">
 
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="1.2*"/>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="1.2*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
 
-                        <cc:TaskButton x:Name="RobotButton" 
+                    <cc:TaskButton x:Name="RobotButton" 
                                    Grid.Column="1"
                                    Margin="15,0,15,0"
                                    Background="LightGray"
@@ -220,7 +215,7 @@
                                    FontSize="16" FontWeight="DemiBold"
                                    />
 
-                        <StackPanel Grid.Column="2" 
+                    <StackPanel Grid.Column="2" 
                                 Margin="5" 
                                 VerticalAlignment="Center">
                         
@@ -247,7 +242,7 @@
 
                     </StackPanel>
 
-                        <cc:TaskButton x:Name="HumanButton" 
+                    <cc:TaskButton x:Name="HumanButton" 
                                 Grid.Column="3"
                                 Margin="15,0,15,0"
                                 Background="LightGray"
@@ -261,10 +256,8 @@
                                 FontSize="16" FontWeight="DemiBold"
                                 />
 
-                    </Grid>
-                    
-                </Grid>    
-                    
+                </Grid>
+
             </Grid>
             
         </Border>

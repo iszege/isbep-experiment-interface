@@ -1,4 +1,5 @@
-﻿using ExperimentInterface.CustomControls;
+﻿using ExperimentInterface.Backend.Interactions;
+using ExperimentInterface.CustomControls;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -24,6 +25,7 @@ namespace ExperimentInterface.Pages
     {
         Window window = Application.Current.MainWindow as Window;
         MainWindow? mainWindow = Application.Current.MainWindow as MainWindow;
+        Backend.Interactions.VoiceInteraction voiceInteraction = new Backend.Interactions.VoiceInteraction();
 
         public Landing()
         {

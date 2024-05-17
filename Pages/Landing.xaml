@@ -87,7 +87,7 @@
                                CornerRadius="10"
                                FontFamily="Roboto" FontSize="14"
                                FontWeight="Bold"
-                               ImageSource="/Images/UI/PlaceholderImage.png"
+                               ImageSource="/Images/UI/ButtonInteraction.png"
                                NavigationUri="/Pages/Instructions.xaml"/>
 
             <cc:NavigationCard x:Name="InteractionMethod2"
@@ -97,7 +97,7 @@
                                CornerRadius="10"
                                FontFamily="Roboto" FontSize="14"
                                FontWeight="Bold"
-                               ImageSource="/Images/UI/PlaceholderImage.png"
+                               ImageSource="/Images/UI/VoiceInteraction.png"
                                NavigationUri="/Pages/Instructions.xaml"/>
 
             <cc:NavigationCard x:Name="InteractionMethod3"
@@ -107,7 +107,7 @@
                                CornerRadius="10"
                                FontFamily="Roboto" FontSize="14"
                                FontWeight="Bold"
-                               ImageSource="/Images/UI/PlaceholderImage.png"
+                               ImageSource="/Images/UI/GestureInteraction.png"
                                NavigationUri="/Pages/Instructions.xaml"/>
 
         </Grid>

@@ -88,7 +88,7 @@
                                FontFamily="Roboto" FontSize="14"
                                FontWeight="Bold"
                                ImageSource="/Images/UI/PlaceholderImage.png"
-                               NavigationUri="/Pages/InteractionStart.xaml"/>
+                               NavigationUri="/Pages/Instructions.xaml"/>
 
             <cc:NavigationCard x:Name="InteractionMethod2"
                                Grid.Column="1"
@@ -98,7 +98,7 @@
                                FontFamily="Roboto" FontSize="14"
                                FontWeight="Bold"
                                ImageSource="/Images/UI/PlaceholderImage.png"
-                               NavigationUri="/Pages/InteractionStart.xaml"/>
+                               NavigationUri="/Pages/Instructions.xaml"/>
 
             <cc:NavigationCard x:Name="InteractionMethod3"
                                Grid.Column="2"
@@ -108,7 +108,7 @@
                                FontFamily="Roboto" FontSize="14"
                                FontWeight="Bold"
                                ImageSource="/Images/UI/PlaceholderImage.png"
-                               NavigationUri="/Pages/InteractionStart.xaml"/>
+                               NavigationUri="/Pages/Instructions.xaml"/>
 
         </Grid>
 

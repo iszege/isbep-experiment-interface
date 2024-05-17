@@ -4,6 +4,7 @@ using System;
 using System.Diagnostics;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 using System.Windows.Media.Imaging;
 
 namespace ExperimentInterface.Pages
@@ -24,8 +25,20 @@ namespace ExperimentInterface.Pages
         public TaskTemplate()
         {
             InitializeComponent();
+        }
+
+        private void OnPageLoaded(object sender, RoutedEventArgs e)
+        {
             NextTask();
+            
+            Application.Current.MainWindow.KeyDown += OnKeyDown;
             VoiceInteraction.FeedbackGiven += VoiceInteraction_FeedbackGiven;
+        }
+       
+        private void OnPageUnloaded(object sender, RoutedEventArgs e)
+        {
+            Application.Current.MainWindow.KeyDown -= OnKeyDown;
+            VoiceInteraction.FeedbackGiven -= VoiceInteraction_FeedbackGiven;
         }
 
         #region Task Setup
@@ -146,7 +159,8 @@ namespace ExperimentInterface.Pages
             // Dispose the SpeechRecognitionEngine when ending the voice recognition task
             if (mainWindow != null && mainWindow.session.experimentData.Interaction == 2) voiceInteraction.Dispose();
 
-            // TODO navigate to a new exit page or simply back to the landing page
+            // Navigate to the task completed page
+            NavigationService.Navigate(new Uri("/Pages/Done.xaml", UriKind.Relative));
         }
 
         #endregion
@@ -192,6 +206,25 @@ namespace ExperimentInterface.Pages
                 SaveResult(true, true);
             else
                 SaveResult(true, false);
+        }
+
+        private void OnKeyDown(object sender, KeyEventArgs e)
+        {
+            if (mainWindow == null) return;
+
+            // If no feedback is needed, let spacebar load the next task
+            if (e.Key == Key.Space && !mainWindow.session.taskManager.GetNextTaskType())
+                SaveResult(false, false);
+
+            // Input other than space is only relevant to feedback tasks in the button interaction method
+            if (!mainWindow.session.taskManager.GetNextTaskType()) return;
+            if (mainWindow.session.experimentData.Interaction != 1) return;
+
+            // Send to robot button is expected on the left, send to human on the right
+            if (e.Key == Key.Right)
+                SaveResult(true, false);
+            else if (e.Key == Key.Left)
+                SaveResult(true, true);
         }
 
         private void VoiceInteraction_FeedbackGiven(bool obj)

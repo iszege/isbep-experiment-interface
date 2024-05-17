@@ -10,11 +10,16 @@
   <ItemGroup>
     <None Remove="Data\Tasks.csv" />
     <None Remove="Images\UI\Close.png" />
+    <None Remove="Images\UI\Gesture.png" />
+    <None Remove="Images\UI\Left.png" />
     <None Remove="Images\UI\Maximize.png" />
+    <None Remove="Images\UI\Microphone.png" />
     <None Remove="Images\UI\Minimize.png" />
     <None Remove="Images\UI\PlaceholderImage.png" />
     <None Remove="Images\UI\PlaceholderImageSource.png" />
+    <None Remove="Images\UI\Right.png" />
     <None Remove="Images\UI\Settings.png" />
+    <None Remove="Images\UI\Spacebar.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -22,11 +27,16 @@
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </EmbeddedResource>
     <Resource Include="Images\UI\Close.png" />
+    <Resource Include="Images\UI\Gesture.png" />
+    <Resource Include="Images\UI\Left.png" />
     <Resource Include="Images\UI\Maximize.png" />
+    <Resource Include="Images\UI\Microphone.png" />
     <Resource Include="Images\UI\Minimize.png" />
     <Resource Include="Images\UI\PlaceholderImage.png" />
     <Resource Include="Images\UI\PlaceholderImageSource.png" />
+    <Resource Include="Images\UI\Right.png" />
     <Resource Include="Images\UI\Settings.png" />
+    <Resource Include="Images\UI\Spacebar.png" />
   </ItemGroup>
 
   <ItemGroup>

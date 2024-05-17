@@ -208,6 +208,12 @@ namespace ExperimentInterface.Pages
                 SaveResult(true, false);
         }
 
+        /// <summary>
+        /// Event listener that registers key presses, used to communicate task completion and feedback.
+        /// Implements logic for button controls interaction method.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void OnKeyDown(object sender, KeyEventArgs e)
         {
             if (mainWindow == null) return;
@@ -227,9 +233,19 @@ namespace ExperimentInterface.Pages
                 SaveResult(true, true);
         }
 
-        private void VoiceInteraction_FeedbackGiven(bool obj)
+        /// <summary>
+        /// Event listener that registers either speech feedback as true ("yes") or false ("no").
+        /// Implements logic for voice control interaction method.
+        /// </summary>
+        /// <param name="pickable"></param>
+        private void VoiceInteraction_FeedbackGiven(bool pickable)
         {
-            Trace.WriteLine(obj);
+            if (mainWindow == null) return;
+            if (mainWindow.session.experimentData.Interaction != 2) return;
+            if (!mainWindow.session.taskManager.GetNextTaskType()) return;
+
+            Trace.WriteLine($"Registered {((pickable) ? "yes" : "no")}, submitting feedback!");
+            SaveResult(true, pickable);
         }
 
         #endregion

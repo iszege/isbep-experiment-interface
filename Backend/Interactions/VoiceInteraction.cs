@@ -39,13 +39,11 @@ namespace ExperimentInterface.Backend.Interactions
         {
             switch (e.Result.Text)
             {
-                case "yes":
-                    Trace.WriteLine("Detected \"Yes\", so send the item to robot");
+                case "yes":;
                     FeedbackGiven?.Invoke(true);
                     break;
 
                 case "no":
-                    Trace.WriteLine("Detected \"No\", so send the item to human");
                     FeedbackGiven?.Invoke(false);
                     break;
 

@@ -1,0 +1,1 @@
+print("Message from test.py")

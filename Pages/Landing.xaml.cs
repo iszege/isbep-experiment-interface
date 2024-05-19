@@ -84,6 +84,7 @@ namespace ExperimentInterface.Pages
         /// </summary>
         private void UpdateUI()
         {
+            if (mainWindow == null) return;
             ParticipantID.Content = $"Participant #{mainWindow.session.experimentData.ID}";
         }
     }

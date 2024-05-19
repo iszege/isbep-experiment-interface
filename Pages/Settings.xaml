@@ -79,8 +79,39 @@
                                      FontFamily="Roboto"
                                      FontSize="16" FontWeight="DemiBold"
                                      Margin="5"
-                                     ButtonBase.Click="OnNewParticipantClick"
-                                     />
+                                     ButtonBase.Click="OnNewParticipantClick"/>
+
+                <StackPanel x:Name="DebugPanel" Margin="0,10,0,0"
+                            ButtonBase.Click="OnDebugClick">
+
+                    <TextBlock x:Name="DebugText" 
+                           Margin="10" FontSize="18"
+                           TextAlignment="Center" Foreground="Black"
+                           FontWeight="DemiBold">
+                        Debug Interaction Methods
+                    </TextBlock>
+
+                    <cc:NavigationButton x:Name="VoiceDebug"
+                                     Background="DarkSlateGray" 
+                                     Foreground="White"
+                                     Width="100" Height="25" CornerRadius="10"
+                                     Content="Voice"
+                                     FontFamily="Roboto"
+                                     FontSize="14" FontWeight="DemiBold"
+                                     Margin="5"
+                                     NavigationUri="/Pages/VoiceDebug.xaml"/>
+                    
+                    <cc:NavigationButton x:Name="GestureDebug"
+                                     Background="DarkSlateGray" 
+                                     Foreground="White"
+                                     Width="100" Height="25" CornerRadius="10"
+                                     Content="Gestures"
+                                     FontFamily="Roboto"
+                                     FontSize="14" FontWeight="DemiBold"
+                                     Margin="5"
+                                     NavigationUri="/Pages/GestureDebug.xaml"/>
+                    
+                </StackPanel>
 
             </StackPanel>
 

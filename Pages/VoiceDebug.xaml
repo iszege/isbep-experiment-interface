@@ -26,7 +26,7 @@
                        TextAlignment="Center"
                        VerticalAlignment="Center"
                        Foreground="Black"> 
-                Output from test.py:
+                Output from VoiceInteraction.cs:
             </TextBlock>
 
             <TextBlock x:Name="Output"

@@ -18,20 +18,25 @@ namespace ExperimentInterface.Backend.Interactions
     /// </summary>
     internal class GestureInteraction
     {
-        internal string? pyResult;
+        internal static event Action<string>? FeedbackGiven;
         internal bool isPickable;
 
-        ProcessStartInfo processStartInfo = new ProcessStartInfo
-        {
-            FileName = "C:\\Users\\20192685\\AppData\\Local\\Programs\\Python\\Python311\\python.exe",
-            Arguments = "C:\\Users\\20192685\\Desktop\\GestureDetection\\gesture_detection_thumbs.py",
-            UseShellExecute = false,
-            RedirectStandardOutput = true,
-            RedirectStandardError = true,
-            CreateNoWindow = true
-        };
+        ProcessStartInfo processStartInfo;
 
         internal GestureInteraction()
+        {
+            processStartInfo = new ProcessStartInfo
+            {
+                FileName = "C:\\Users\\20192685\\AppData\\Local\\Programs\\Python\\Python311\\python.exe",
+                Arguments = "C:\\Users\\20192685\\Desktop\\GestureDetection\\gesture_detection_thumbs_embedded.py",
+                UseShellExecute = false,
+                RedirectStandardOutput = true,
+                RedirectStandardError = true,
+                CreateNoWindow = true
+            };
+        }
+
+        internal void Start()
         {
             using (Process process = Process.Start(processStartInfo))
             {
@@ -40,20 +45,16 @@ namespace ExperimentInterface.Backend.Interactions
                     while (!reader.EndOfStream)
                     {
                         string result = reader.ReadLine();
-                        Trace.WriteLine(result);
-                        pyResult = result;
-                        //if (result == "Thumbs Up")
-                        //{
-                        //    Console.WriteLine("Detected Thumbs Up gesture.");
-                        //    // Respond to thumbs up gesture
-                        //    // e.g., call a function, update UI, etc.
-                        //}
-                        //else if (result == "Thumbs Down")
-                        //{
-                        //    Console.WriteLine("Detected Thumbs Down gesture.");
-                        //    // Respond to thumbs down gesture
-                        //    // e.g., call a function, update UI, etc.
-                        //}
+
+                        if (result == "Thumbs Up")
+                        {
+                            Trace.WriteLine("Detected Thumbs Up gesture.");
+                            FeedbackGiven?.Invoke("Yes");
+                        }
+                        else if (result == "Thumbs Down")
+                        {
+                            Trace.WriteLine("Detected Thumbs Down gesture.");
+                        }
                     }
                 }
 

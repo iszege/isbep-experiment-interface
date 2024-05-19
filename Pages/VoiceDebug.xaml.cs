@@ -1,17 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using ExperimentInterface.Backend.Interactions;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace ExperimentInterface.Pages
 {
@@ -20,14 +10,33 @@ namespace ExperimentInterface.Pages
     /// </summary>
     public partial class VoiceDebug : Page
     {
+        VoiceInteraction? voiceInteraction;
+
         public VoiceDebug()
         {
             InitializeComponent();
         }
 
+        private void OnPageLoaded(object sender, RoutedEventArgs e)
+        {
+            voiceInteraction = new VoiceInteraction();
+            VoiceInteraction.FeedbackGiven += VoiceInteraction_FeedbackGiven;
+        }
+
+        private void OnPageUnloaded(object sender, RoutedEventArgs e)
+        {
+            if (voiceInteraction != null) voiceInteraction.Dispose();
+            VoiceInteraction.FeedbackGiven -= VoiceInteraction_FeedbackGiven;
+        }
+
         private void OnBackButtonClick(object sender, RoutedEventArgs e)
         {
             NavigationService.GoBack();
+        }
+
+        private void VoiceInteraction_FeedbackGiven(bool pickable)
+        {
+            Output.Text = (pickable) ? "Yes" : "No";
         }
     }
 }

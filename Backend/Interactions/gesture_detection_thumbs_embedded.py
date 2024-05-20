@@ -1,6 +1,7 @@
 import cv2
 import mediapipe as mp
 import sys
+import keyboard
 
 # Initialize MediaPipe hands module
 mp_hands = mp.solutions.hands
@@ -86,6 +87,9 @@ while cap.isOpened():
             
     if cv2.waitKey(5) & 0xFF == 27:
         break
+
+    if keyboard.is_pressed('escape'):
+        cap.release()
 
 cap.release()
 cv2.destroyAllWindows()

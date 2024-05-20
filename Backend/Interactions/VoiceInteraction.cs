@@ -12,7 +12,7 @@ namespace ExperimentInterface.Backend.Interactions
     {
         SpeechRecognitionEngine recognizer;
 
-        internal static event Action<bool>? FeedbackGiven;
+        internal static event Action<bool>? OnFeedbackGiven;
 
         internal VoiceInteraction()
         {
@@ -40,11 +40,11 @@ namespace ExperimentInterface.Backend.Interactions
             switch (e.Result.Text)
             {
                 case "yes":;
-                    FeedbackGiven?.Invoke(true);
+                    OnFeedbackGiven?.Invoke(true);
                     break;
 
                 case "no":
-                    FeedbackGiven?.Invoke(false);
+                    OnFeedbackGiven?.Invoke(false);
                     break;
 
                 default:

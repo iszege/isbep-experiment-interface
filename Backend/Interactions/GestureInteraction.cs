@@ -64,7 +64,6 @@ namespace ExperimentInterface.Backend.Interactions
                         if (result == "Thumbs Up")
                         {
                             _syncContext.Post(e => OnFeedbackGiven?.Invoke(true), null);
-                            process.Kill();
                         }
                         else if (result == "Thumbs Down")
                         {

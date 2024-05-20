@@ -313,8 +313,8 @@
                                TextWrapping="Wrap">
                         Would a robot be able to grab this item?
                         <LineBreak/><LineBreak/>
-                        Move your hand right to left for yes 
-                        or left to right for no
+                        Make a <Italic>Thumbs Up</Italic> sign for yes or a
+                        <Italic>Thumbs Down</Italic> for no.
                     </TextBlock>
 
                     <Image Source="/Images/UI/Gesture.png"

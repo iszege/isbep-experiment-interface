@@ -29,6 +29,11 @@ namespace ExperimentInterface.Backend
 
         #region Setup methods
 
+        internal void Reset()
+        {
+            GetRequiredTasks();
+        }
+
         private void GetRequiredTasks()
         {
             feedbackTasks = 5;

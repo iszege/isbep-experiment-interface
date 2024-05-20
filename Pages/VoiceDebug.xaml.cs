@@ -20,13 +20,13 @@ namespace ExperimentInterface.Pages
         private void OnPageLoaded(object sender, RoutedEventArgs e)
         {
             voiceInteraction = new VoiceInteraction();
-            VoiceInteraction.FeedbackGiven += VoiceInteraction_FeedbackGiven;
+            VoiceInteraction.OnFeedbackGiven += VoiceInteraction_OnFeedbackGiven;
         }
 
         private void OnPageUnloaded(object sender, RoutedEventArgs e)
         {
             if (voiceInteraction != null) voiceInteraction.Dispose();
-            VoiceInteraction.FeedbackGiven -= VoiceInteraction_FeedbackGiven;
+            VoiceInteraction.OnFeedbackGiven -= VoiceInteraction_OnFeedbackGiven;
         }
 
         private void OnBackButtonClick(object sender, RoutedEventArgs e)
@@ -34,7 +34,7 @@ namespace ExperimentInterface.Pages
             NavigationService.GoBack();
         }
 
-        private void VoiceInteraction_FeedbackGiven(bool pickable)
+        private void VoiceInteraction_OnFeedbackGiven(bool pickable)
         {
             Output.Text = (pickable) ? "Yes" : "No";
         }

@@ -2,6 +2,7 @@
 using ExperimentInterface.CustomControls;
 using System;
 using System.Diagnostics;
+using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -17,9 +18,13 @@ namespace ExperimentInterface.Pages
         MainWindow? mainWindow = Application.Current.MainWindow as MainWindow;
         Stopwatch stopwatch = new Stopwatch();
 
-        VoiceInteraction voiceInteraction = new VoiceInteraction();
+        VoiceInteraction? voiceInteraction;
+        GestureInteraction? gestureInteraction;
+        
         Backend.Task? currentTask;
 
+        int currentInteractionType = 1;
+        
         Grid? FeedbackControls;
 
         public TaskTemplate()
@@ -27,19 +32,42 @@ namespace ExperimentInterface.Pages
             InitializeComponent();
         }
 
+        #region Page Initialization
+
         private void OnPageLoaded(object sender, RoutedEventArgs e)
         {
-            NextTask();
-            
+            // Determine current interaction type
+            if (mainWindow != null)
+                currentInteractionType = mainWindow.session.experimentData.Interaction;
+
+            // Get the current SynchronizationContext for async threads of the GestureInteraction
+            SynchronizationContext syncContext = SynchronizationContext.Current ?? throw new ArgumentNullException(nameof(syncContext));
+
+            // Initialize interaction helpers if needed
+            if (currentInteractionType == 2) voiceInteraction = new VoiceInteraction();
+            if (currentInteractionType == 3) gestureInteraction = new GestureInteraction(syncContext);
+
+            // Subscribe to feedback events
             Application.Current.MainWindow.KeyDown += OnKeyDown;
-            VoiceInteraction.FeedbackGiven += VoiceInteraction_FeedbackGiven;
+            VoiceInteraction.OnFeedbackGiven += VoiceInteraction_OnFeedbackGiven;
+            GestureInteraction.OnFeedbackGiven += GestureInteraction_OnFeedbackGiven;
+
+            // Reset the amount of tasks remaining
+            if (mainWindow != null) mainWindow.session.taskManager.Reset();
+
+            // Load the first task
+            NextTask();
         }
-       
+
         private void OnPageUnloaded(object sender, RoutedEventArgs e)
         {
+            // Unsubscribe from all feedback events
             Application.Current.MainWindow.KeyDown -= OnKeyDown;
-            VoiceInteraction.FeedbackGiven -= VoiceInteraction_FeedbackGiven;
+            VoiceInteraction.OnFeedbackGiven -= VoiceInteraction_OnFeedbackGiven;
+            GestureInteraction.OnFeedbackGiven -= GestureInteraction_OnFeedbackGiven;
         }
+
+        #endregion
 
         #region Task Setup
 
@@ -234,17 +262,34 @@ namespace ExperimentInterface.Pages
         }
 
         /// <summary>
-        /// Event listener that registers either speech feedback as true ("yes") or false ("no").
+        /// Event listener that registers speech feedback as either true ("yes") or false ("no").
         /// Implements logic for voice control interaction method.
         /// </summary>
         /// <param name="pickable"></param>
-        private void VoiceInteraction_FeedbackGiven(bool pickable)
+        private void VoiceInteraction_OnFeedbackGiven(bool pickable)
         {
             if (mainWindow == null) return;
             if (mainWindow.session.experimentData.Interaction != 2) return;
             if (!mainWindow.session.taskManager.GetNextTaskType()) return;
 
-            Trace.WriteLine($"Registered {((pickable) ? "yes" : "no")}, submitting feedback!");
+            //Trace.WriteLine($"Registered {((pickable) ? "yes" : "no")}, submitting feedback!");
+            
+            SaveResult(true, pickable);
+        }
+
+        /// <summary>
+        /// Evebt listener that registers gesture feedback as either true ("yes") or false ("no").
+        /// Implements logic for gesture control interaction method.
+        /// </summary>
+        /// <param name="pickable"></param>
+        private void GestureInteraction_OnFeedbackGiven(bool pickable)
+        {
+            if (mainWindow == null) return;
+            if (mainWindow.session.experimentData.Interaction != 3) return;
+            if (!mainWindow.session.taskManager.GetNextTaskType()) return;
+
+            //Trace.WriteLine($"Registered {((pickable) ? "yes" : "no")}, submitting feedback!");
+
             SaveResult(true, pickable);
         }
 

@@ -1,15 +1,7 @@
 ﻿using System;
-using System.CodeDom.Compiler;
-using System.Collections;
-using System.Collections.Generic;
-using System.Configuration.Internal;
 using System.Diagnostics;
 using System.IO;
-using System.Linq;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
-using System.Windows;
 
 namespace ExperimentInterface.Backend.Interactions
 {
@@ -22,14 +14,14 @@ namespace ExperimentInterface.Backend.Interactions
         private readonly SynchronizationContext _syncContext;
 
         internal static event Action<string>? OnGestureDetected;
+        internal static event Action<bool>? OnFeedbackGiven;
 
         private bool started = false;
-        private bool interrupted = false;
 
         ProcessStartInfo processStartInfo = new ProcessStartInfo
         {
             FileName = "C:\\Users\\20192685\\AppData\\Local\\Programs\\Python\\Python311\\python.exe",
-            Arguments = "C:\\Users\\20192685\\Desktop\\GestureDetection\\gesture_detection_thumbs_embedded.py",
+            Arguments = "C:\\Users\\20192685\\Documents\\GitHub\\isbep-experiment-interface\\Backend\\Interactions\\gesture_detection_thumbs_embedded.py",
             UseShellExecute = false,
             RedirectStandardOutput = true,
             RedirectStandardError = true,
@@ -38,7 +30,10 @@ namespace ExperimentInterface.Backend.Interactions
 
         internal GestureInteraction(SynchronizationContext syncContext)
         {
+            // Load the SynchronizationContext
             _syncContext = syncContext;
+
+            // Start the interaction
             StartMonitoring();
         }
 
@@ -52,13 +47,6 @@ namespace ExperimentInterface.Backend.Interactions
             new System.Threading.Tasks.Task(Monitor).Start();
         }
 
-        internal void StopMonitoring()
-        {
-            // Sets interrupted to true, killing the process in Monitor()
-            interrupted = true;
-            started = false;
-        }
-
         private void Monitor()
         {
             using (Process process = Process.Start(processStartInfo))
@@ -69,20 +57,19 @@ namespace ExperimentInterface.Backend.Interactions
                     {
                         string result = reader.ReadLine();
 
-                        Trace.WriteLine(result);
+                        //Trace.WriteLine(result);
 
                         _syncContext.Post(e => OnGestureDetected?.Invoke(result), null);
 
                         if (result == "Thumbs Up")
                         {
+                            _syncContext.Post(e => OnFeedbackGiven?.Invoke(true), null);
                             process.Kill();
                         }
                         else if (result == "Thumbs Down")
                         {
-                            
+                            _syncContext.Post(e => OnFeedbackGiven?.Invoke(false), null);
                         }
-                        
-                        if (this.interrupted) process.Kill();
                     }
                 }
 
@@ -93,24 +80,5 @@ namespace ExperimentInterface.Backend.Interactions
                 }
             }
         }
-
-        private void Communicate(string result)
-        {
-            try
-            {
-                _syncContext.Post(e => OnGestureDetected?.Invoke(result), null);
-            }
-
-            catch (InvalidOperationException exc)
-            {
-                MessageBox.Show(exc.ToString());
-            }
-
-            catch (Exception exception)
-            {
-                MessageBox.Show(exception.Message);
-            }
-        }
-
     }
 }

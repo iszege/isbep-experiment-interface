@@ -15,6 +15,7 @@ namespace ExperimentInterface.Pages
     public partial class GestureDebug : Page
     {
         GestureInteraction? gestureInteraction;
+        SynchronizationContext? syncContext;
 
         public GestureDebug()
         {
@@ -23,20 +24,25 @@ namespace ExperimentInterface.Pages
 
         private void OnPageLoaded(object sender, RoutedEventArgs e)
         {
-            SynchronizationContext syncContext = SynchronizationContext.Current ?? throw new ArgumentNullException(nameof(syncContext));
+            // Get the SynchronizationContext to be able to post events from a different thread inside GestureInteraction
+            syncContext = SynchronizationContext.Current ?? throw new ArgumentNullException(nameof(syncContext));
+            
+            // Initialize a new GestureInteraction using the SynchronizationContext
             gestureInteraction = new GestureInteraction(syncContext);
 
+            // Subscribe to the event
             GestureInteraction.OnGestureDetected += GestureInteraction_OnGestureDetected;
+        }
+
+        private void OnPageUnloaded(object sender, RoutedEventArgs e)
+        {
+            // Unsubscribe from the event
+            GestureInteraction.OnGestureDetected -= GestureInteraction_OnGestureDetected;
         }
 
         private void OnBackButtonClick(object sender, RoutedEventArgs e)
         {
             NavigationService.GoBack();
-        }
-
-        private void OnDebugClick(object sender, RoutedEventArgs e)
-        {
-            gestureInteraction?.StopMonitoring();
         }
 
         private void GestureInteraction_OnGestureDetected(string obj)

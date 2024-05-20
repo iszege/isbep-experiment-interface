@@ -8,7 +8,7 @@
       mc:Ignorable="d" 
       d:DesignHeight="600" d:DesignWidth="920"
       Title="GestureDebug"
-      Loaded="OnPageLoaded">
+      Loaded="OnPageLoaded" Unloaded="OnPageUnloaded">
 
     <Grid>
         <Grid.RowDefinitions>
@@ -27,7 +27,7 @@
                        TextAlignment="Center"
                        VerticalAlignment="Center"
                        Foreground="Black"> 
-                Output from test.py:
+                Output from python process:
             </TextBlock>
 
             <TextBlock x:Name="Output"
@@ -39,14 +39,14 @@
                Awaiting Input
             </TextBlock>
 
-            <cc:NavigationButton x:Name="Debug"
+            <!--<cc:NavigationButton x:Name="Debug"
                                  Margin="0,20,0,0"
                                  Background="DarkSlateGray" 
                                  Foreground="White"
                                  Width="100" Height="25" CornerRadius="10"
                                  Content="Debug" FontFamily="Roboto"
                                  FontSize="16" FontWeight="DemiBold"
-                                 ButtonBase.Click="OnDebugClick"/>
+                                 ButtonBase.Click="OnDebugClick"/>-->
 
         </StackPanel>
 

@@ -168,7 +168,7 @@ namespace ExperimentInterface.Pages
             name = (numAmount > 1) ? $"{name}s" : name;
 
             // Generate and return instructions
-            string taskInstruction = $"Place exactly {amount} {name} (as shown on screen) in the basket on the {side.ToLower()}.";
+            string taskInstruction = $"Place the {name.ToLower()} (as shown on screen) in the basket on the {side.ToLower()}.";
             string inputInstruction = (feedback)
                                       ? "Complete the feedback task described below to continue."
                                       : "Press the spacebar or click the button below to continue.";

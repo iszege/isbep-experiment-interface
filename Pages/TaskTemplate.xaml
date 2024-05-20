@@ -79,7 +79,7 @@
                                    VerticalAlignment="Center"
                                    TextAlignment="Center"
                                    FontFamily="Roboto"
-                                   FontSize="20"
+                                   FontSize="28"
                                    FontWeight="Bold"
                                    Text="Item Name"/>
 
@@ -97,9 +97,10 @@
                                    TextAlignment="Center"
                                    Margin="10"
                                    FontFamily="Roboto"
-                                   FontSize="12"
+                                   FontSize="18"
+                                   FontStyle="Italic"
                                    TextWrapping="Wrap"
-                                   Text="Some relevant details about this item go here"/>
+                                   Text="Find this item"/>
 
                     </Grid>
 
@@ -117,7 +118,7 @@
                                VerticalAlignment="Center"
                                TextAlignment="Center"
                                FontFamily="Roboto"
-                               FontSize="20"
+                               FontSize="28"
                                FontWeight="Bold"
                                Text="Task"/>
 
@@ -126,18 +127,11 @@
                                VerticalAlignment="Center"
                                TextAlignment="Center"
                                FontFamily="Roboto"
-                               FontSize="14"
+                               FontSize="24"
                                TextWrapping="Wrap"
                                Margin="10">
-                        A brief description of the the current task goes here.
                         
-                        <LineBreak/><LineBreak/>
-                        
-                        A task could be something like: 
-                        
-                        <LineBreak/><LineBreak/>
-                        
-                        Place exactly X of the item shown on screen here
+                        Place the X (as shown on screen here)
                         in the left/right basket 
                         
                         <LineBreak/><LineBreak/>
@@ -183,7 +177,7 @@
                                    ImageSource="/Images/UI/Spacebar.png" 
                                    Text="Next Item" 
                                    FontFamily="Roboto"
-                                   FontSize="16" FontWeight="DemiBold"/>
+                                   FontSize="20" FontWeight="DemiBold"/>
 
                 </Grid>
                 
@@ -202,60 +196,61 @@
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
 
-                    <cc:TaskButton x:Name="RobotButton" 
-                                   Grid.Column="1"
-                                   Margin="15,0,15,0"
-                                   Background="LightGray"
-                                   Foreground="Black"
-                                   CornerRadius="10"
-                                   BorderBrush="Black"
-                                   BorderThickness="2"
-                                   ImageSource="/Images/UI/Left.png" 
-                                   Text="To the Robot" 
-                                   FontFamily="Roboto"
-                                   FontSize="16" FontWeight="DemiBold"
-                                   />
-
-                    <StackPanel Grid.Column="2" 
-                                Margin="5" 
-                                VerticalAlignment="Center">
-                        
-                        <TextBlock FontFamily="Roboto" 
-                                   FontSize="18"
-                                   FontWeight="DemiBold"
-                                   HorizontalAlignment="Center">
-                            Feedback Wanted
-                        </TextBlock>
-                        
-                        <TextBlock FontFamily="Roboto" 
-                                   FontSize="14"
-                                   HorizontalAlignment="Center"
-                                   TextAlignment="Center"
-                                   TextWrapping="Wrap"
-                                   Margin="0,5,0,0">
-                            Where should this item be sent to in the future?
-                        </TextBlock>
-
-                        <TextBlock Text="&#x27F7;"
-                                   FontFamily="Roboto"
-                                   FontSize="20"
-                                   HorizontalAlignment="Center"/>
-
-                    </StackPanel>
-
                     <cc:TaskButton x:Name="HumanButton" 
-                                Grid.Column="3"
+                                Grid.Column="1"
                                 Margin="15,0,15,0"
                                 Background="LightGray"
                                 Foreground="Black"
                                 CornerRadius="10"
                                 BorderBrush="Black"
                                 BorderThickness="2"
-                                ImageSource="/Images/UI/Right.png" 
-                                Text="To a human" 
+                                ImageSource="/Images/UI/Left.png" 
+                                Text="No (send to a human)" 
                                 FontFamily="Roboto"
-                                FontSize="16" FontWeight="DemiBold"
+                                FontSize="20" FontWeight="DemiBold"
                                 />
+
+                    <StackPanel Grid.Column="2" 
+                                Margin="5" 
+                                VerticalAlignment="Center">
+                        
+                        <TextBlock FontFamily="Roboto" 
+                                   FontSize="24"
+                                   FontWeight="DemiBold"
+                                   HorizontalAlignment="Center"
+                                   Visibility="Collapsed">
+                            Feedback
+                        </TextBlock>
+                        
+                        <TextBlock FontFamily="Roboto" 
+                                   FontSize="20"
+                                   HorizontalAlignment="Center"
+                                   TextAlignment="Center"
+                                   TextWrapping="Wrap"
+                                   Margin="0,5,0,0">
+                           Would a robot be able to grab this item?
+                        </TextBlock>
+
+                        <TextBlock Text="&#x27F7;"
+                                   FontFamily="Roboto"
+                                   FontSize="32"
+                                   HorizontalAlignment="Center"/>
+
+                    </StackPanel>
+
+                    <cc:TaskButton x:Name="RobotButton" 
+                                   Grid.Column="3"
+                                   Margin="15,0,15,0"
+                                   Background="LightGray"
+                                   Foreground="Black"
+                                   CornerRadius="10"
+                                   BorderBrush="Black"
+                                   BorderThickness="2"
+                                   ImageSource="/Images/UI/Right.png" 
+                                   Text="Yes (send to the robot)" 
+                                   FontFamily="Roboto"
+                                   FontSize="20" FontWeight="DemiBold"
+                                   />
 
                 </Grid>
 
@@ -274,7 +269,7 @@
 
                     <TextBlock Grid.Column="1" Margin="0"
                                FontFamily="Roboto"
-                               FontSize="14"
+                               FontSize="20"
                                HorizontalAlignment="Center"
                                VerticalAlignment="Center"
                                TextAlignment="Center"
@@ -306,15 +301,15 @@
 
                     <TextBlock Grid.Column="1" Margin="0"
                                FontFamily="Roboto"
-                               FontSize="14"
+                               FontSize="20"
                                HorizontalAlignment="Center"
                                VerticalAlignment="Center"
                                TextAlignment="Center"
                                TextWrapping="Wrap">
                         Would a robot be able to grab this item?
                         <LineBreak/><LineBreak/>
-                        Make a <Italic>Thumbs Up</Italic> sign for yes or a
-                        <Italic>Thumbs Down</Italic> for no.
+                        Make a <Bold>Thumbs Up</Bold> sign for yes or a
+                        <Bold>Thumbs Down</Bold> for no.
                     </TextBlock>
 
                     <Image Source="/Images/UI/Gesture.png"

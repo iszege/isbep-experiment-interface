@@ -1,5 +1,8 @@
 ﻿using ExperimentInterface.Backend.Interactions;
 using System;
+using System.Diagnostics;
+using System.Threading;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Navigation;
@@ -20,9 +23,10 @@ namespace ExperimentInterface.Pages
 
         private void OnPageLoaded(object sender, RoutedEventArgs e)
         {
-            ReadFeedback();
-            // Output.Text = new GestureInteraction().pyResult;
-            // Output.Text = new GestureInteraction().isPickable;
+            SynchronizationContext syncContext = SynchronizationContext.Current ?? throw new ArgumentNullException(nameof(syncContext));
+            gestureInteraction = new GestureInteraction(syncContext);
+
+            GestureInteraction.OnGestureDetected += GestureInteraction_OnGestureDetected;
         }
 
         private void OnBackButtonClick(object sender, RoutedEventArgs e)
@@ -30,9 +34,14 @@ namespace ExperimentInterface.Pages
             NavigationService.GoBack();
         }
 
-        private void ReadFeedback()
+        private void OnDebugClick(object sender, RoutedEventArgs e)
         {
-            Output.Text = new GestureInteraction().pyResult;
+            gestureInteraction?.StopMonitoring();
+        }
+
+        private void GestureInteraction_OnGestureDetected(string obj)
+        {
+            Output.Text = obj;
         }
     }
 }

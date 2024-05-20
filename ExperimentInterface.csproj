@@ -8,7 +8,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Backend\Interactions\test.py" />
     <None Remove="Data\Tasks.csv" />
     <None Remove="Images\UI\ButtonInteraction.png" />
     <None Remove="Images\UI\Close.png" />
@@ -30,9 +29,6 @@
     <EmbeddedResource Include="Data\Tasks.csv">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </EmbeddedResource>
-    <Resource Include="Backend\Interactions\test.py">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Resource>
     <Resource Include="Images\UI\ButtonInteraction.png" />
     <Resource Include="Images\UI\Close.png" />
     <Resource Include="Images\UI\Gesture.png" />

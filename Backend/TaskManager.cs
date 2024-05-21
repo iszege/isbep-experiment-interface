@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ExperimentInterface.Backend
 {
@@ -13,14 +11,14 @@ namespace ExperimentInterface.Backend
     {
         private DataManager dataManager = new DataManager();
         private Random random = new Random();
-        
+
         private List<Task> tasks = new List<Task>();
         private List<TaskResult> results = new List<TaskResult>();
 
         internal int feedbackTasks { get; set; }
         internal int feedbackInterval { get; set; }
         internal int remainingTasks { get; private set; }
-        
+
         internal TaskManager()
         {
             GetRequiredTasks();
@@ -87,7 +85,7 @@ namespace ExperimentInterface.Backend
         private string[] GetTaskInstructions(Task task)
         {
             //int amount = random.Next(1, task.amount + 1);
-            
+
             string[] sides = new string[] { "Left", "Right" };
             string side = sides[random.Next(sides.Length)];
 
@@ -100,7 +98,7 @@ namespace ExperimentInterface.Backend
         /// <returns><c>True</c> if feedback should be completed, <c>False</c> otherwise</returns>
         internal bool GetNextTaskType()
         {
-            return (remainingTasks % (feedbackInterval + 1) == 0 ) ? true : false;
+            return (remainingTasks % (feedbackInterval + 1) == 0) ? true : false;
         }
 
         #endregion

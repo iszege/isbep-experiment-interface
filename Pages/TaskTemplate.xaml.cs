@@ -20,11 +20,11 @@ namespace ExperimentInterface.Pages
 
         VoiceInteraction? voiceInteraction;
         GestureInteraction? gestureInteraction;
-        
+
         Backend.Task? currentTask;
 
         int currentInteractionType = 1;
-        
+
         Grid? FeedbackControls;
 
         public TaskTemplate()
@@ -95,7 +95,7 @@ namespace ExperimentInterface.Pages
                 }
             }
         }
-        
+
         /// <summary>
         /// Populates the relevant fields on the task page with data from the loaded task
         /// </summary>
@@ -132,7 +132,7 @@ namespace ExperimentInterface.Pages
                     {
                         if (i == mainWindow.session.experimentData.Interaction)
                             controls[i - 1].Visibility = Visibility.Visible;
-                        else 
+                        else
                             controls[i - 1].Visibility = Visibility.Collapsed;
                     }
                 }
@@ -208,9 +208,9 @@ namespace ExperimentInterface.Pages
             if (mainWindow != null && currentTask != null)
             {
                 mainWindow.session.taskManager.AddResult(mainWindow.session.experimentData,
-                                                         currentTask, 
-                                                         stopwatch.Elapsed.TotalSeconds, 
-                                                         containsFeedback, 
+                                                         currentTask,
+                                                         stopwatch.Elapsed.TotalSeconds,
+                                                         containsFeedback,
                                                          isPickable);
             }
 
@@ -274,7 +274,7 @@ namespace ExperimentInterface.Pages
             if (!mainWindow.session.taskManager.GetNextTaskType()) return;
 
             //Trace.WriteLine($"Registered {((pickable) ? "yes" : "no")}, submitting feedback!");
-            
+
             SaveResult(true, pickable);
         }
 

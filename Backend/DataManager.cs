@@ -105,7 +105,7 @@ namespace ExperimentInterface.Backend
 
         private void ReportSaveProgress()
         {
-            Trace.WriteLine( writing ? "Now Saving!" : "Saved!" );
+            Trace.WriteLine(writing ? "Now Saving!" : "Saved!");
         }
 
         #endregion

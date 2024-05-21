@@ -1,8 +1,6 @@
 ﻿using ExperimentInterface.Backend.Interactions;
 using System;
-using System.Diagnostics;
 using System.Threading;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Navigation;
@@ -26,7 +24,7 @@ namespace ExperimentInterface.Pages
         {
             // Get the SynchronizationContext to be able to post events from a different thread inside GestureInteraction
             syncContext = SynchronizationContext.Current ?? throw new ArgumentNullException(nameof(syncContext));
-            
+
             // Initialize a new GestureInteraction using the SynchronizationContext
             gestureInteraction = new GestureInteraction(syncContext);
 

@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Diagnostics;
 using System.Speech.Recognition;
 
 namespace ExperimentInterface.Backend.Interactions
@@ -20,7 +19,7 @@ namespace ExperimentInterface.Backend.Interactions
             recognizer = new SpeechRecognitionEngine(new System.Globalization.CultureInfo("en-US"));
 
             // Create and load a grammar for a binary choice (could possibly expand this in the future)
-            Choices options = new Choices(new string[] {"yes", "no"});
+            Choices options = new Choices(new string[] { "yes", "no" });
             GrammarBuilder grammarBuilder = new GrammarBuilder(options);
 
             recognizer.LoadGrammarAsync(new Grammar(grammarBuilder));
@@ -39,7 +38,7 @@ namespace ExperimentInterface.Backend.Interactions
         {
             switch (e.Result.Text)
             {
-                case "yes":;
+                case "yes":
                     OnFeedbackGiven?.Invoke(true);
                     break;
 

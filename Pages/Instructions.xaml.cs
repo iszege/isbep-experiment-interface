@@ -41,11 +41,11 @@ namespace ExperimentInterface.Pages
                 case 1:
                     currentInstructions = buttonInstructions;
                     break;
-                
+
                 case 2:
                     currentInstructions = voiceInstructions;
                     break;
-                
+
                 case 3:
                     currentInstructions = gestureInstructions;
                     break;
@@ -69,7 +69,7 @@ namespace ExperimentInterface.Pages
                 "you can continue to the next task by pressing the spacebar. " +
                 "\n\n" +
                 "During certain tasks, you will be asked whether you think that a robot would also be able to grab that item. " +
-                "For this part of the experiment, " + currentInstructions + 
+                "For this part of the experiment, " + currentInstructions +
                 "\n\n" +
                 "Your time starts as soon as you click on \"Start Task\".";
         }

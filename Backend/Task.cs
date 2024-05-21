@@ -8,14 +8,12 @@
     {
         internal int id;
         internal string name;
-        internal int amount;
         internal string[]? instructions;
 
-        public Task(int id, string name, int amount)
+        public Task(int id, string name)
         {
             this.id = id;
             this.name = name;
-            this.amount = amount;
         }
     }
 }

@@ -101,10 +101,16 @@ namespace ExperimentInterface.Pages
         /// </summary>
         private void PopulateFields(Backend.Task task, bool feedback)
         {
-            // Set text and images
+            // Set text
             ItemName.Text = task.name;
-            //ItemPicture.Source = new BitmapImage(GetImageUri(task.id));
             TaskInstructions.Text = GetTaskInstructions(task.name, task.instructions, feedback);
+
+            // Set image
+            BitmapImage bitmapImage = new BitmapImage();
+            bitmapImage.BeginInit();
+            bitmapImage.UriSource = GetImageUri(task.id);
+            bitmapImage.EndInit();
+            ItemPicture.Source = bitmapImage;
 
             // Toggle required controls
             DefaultControls.Visibility = (feedback) ? Visibility.Collapsed : Visibility.Visible;
@@ -147,7 +153,7 @@ namespace ExperimentInterface.Pages
         /// <returns>A relative URI</returns>
         private Uri GetImageUri(int id)
         {
-            return new Uri($"/Images/Tasks/{id}", UriKind.Relative);
+            return new Uri($"/Images/Tasks/{id}.png", UriKind.Relative);
         }
 
         /// <summary>
@@ -160,12 +166,7 @@ namespace ExperimentInterface.Pages
         private string GetTaskInstructions(string name, string[]? instructions, bool feedback)
         {
             // Ensure missing instructions are dealt with
-            string amount = (instructions != null) ? instructions[0] : "1";
-            string side = (instructions != null) ? instructions[1] : "left";
-
-            // Determine if name should be plural
-            int numAmount = (Int32.TryParse(amount, out int parsedAmount)) ? parsedAmount : 1;
-            name = (numAmount > 1) ? $"{name}s" : name;
+            string side = (instructions != null) ? instructions[0] : "left";
 
             // Generate and return instructions
             string taskInstruction = $"Place the {name.ToLower()} (as shown on screen) in the basket on the {side.ToLower()}.";

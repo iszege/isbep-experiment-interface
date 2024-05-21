@@ -64,9 +64,8 @@ namespace ExperimentInterface.Backend
             string[] columns = row.Split(',');
 
             int id = (Int32.TryParse(columns[0], out int parsedID)) ? parsedID : 0;
-            int amount = (Int32.TryParse(columns[2], out int parsedAmount)) ? parsedAmount : 0;
 
-            return new Task(id, columns[1], amount);
+            return new Task(id, columns[1]);
         }
 
         #endregion

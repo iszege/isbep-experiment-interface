@@ -86,12 +86,12 @@ namespace ExperimentInterface.Backend
         /// <returns>A <c>string[]</c> containing two instructions</returns>
         private string[] GetTaskInstructions(Task task)
         {
-            int amount = random.Next(1, task.amount + 1);
+            //int amount = random.Next(1, task.amount + 1);
             
             string[] sides = new string[] { "Left", "Right" };
             string side = sides[random.Next(sides.Length)];
 
-            return new string[] { amount.ToString(), side };
+            return new string[] { side };
         }
 
         /// <summary>

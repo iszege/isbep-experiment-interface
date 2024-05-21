@@ -51,7 +51,7 @@
             </Grid.RowDefinitions>
 
             <TextBlock x:Name="Description" Grid.Row="0" Margin="80,10,80,10"
-                       HorizontalAlignment="Center" FontSize="18" 
+                       HorizontalAlignment="Center" FontSize="22" 
                        TextAlignment="Center" TextWrapping="Wrap">
                 You have successfully completed this part of the experiment.
                 <LineBreak/> <LineBreak/>

@@ -103,7 +103,7 @@ namespace ExperimentInterface.Pages
         {
             // Set text
             ItemName.Text = task.name;
-            TaskInstructions.Text = GetTaskInstructions(task.name, task.instructions, feedback);
+            SetTaskInstructions(task.name, task.instructions, feedback);
 
             // Set image
             BitmapImage bitmapImage = new BitmapImage();
@@ -162,19 +162,18 @@ namespace ExperimentInterface.Pages
         /// <param name="name"></param>
         /// <param name="instructions"></param>
         /// <param name="feedback"></param>
-        /// <returns>A <c>string</c> containing all instructions to be displayed</returns>
-        private string GetTaskInstructions(string name, string[]? instructions, bool feedback)
+        private void SetTaskInstructions(string name, string[]? instructions, bool feedback)
         {
             // Ensure missing instructions are dealt with
             string side = (instructions != null) ? instructions[0] : "left";
 
-            // Generate and return instructions
-            string taskInstruction = $"Place the {name.ToLower()} (as shown on screen) in the basket on the {side.ToLower()}.";
-            string inputInstruction = (feedback)
+            // Generate and fill instructions
+            InstructionItem.Text = name.ToLower();
+            InstructionSide.Text = side.ToLower();
+
+            InstructionContinue.Text = (feedback)
                                       ? "Complete the feedback task described below to continue."
                                       : "Press the spacebar or click the button below to continue.";
-
-            return taskInstruction + "\n\n" + inputInstruction;
         }
 
         /// <summary>

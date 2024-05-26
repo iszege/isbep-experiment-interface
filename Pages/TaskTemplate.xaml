@@ -131,12 +131,16 @@
                                TextWrapping="Wrap"
                                Margin="10">
                         
-                        Place the X (as shown on screen here)
-                        in the left/right basket 
-                        
-                        <LineBreak/><LineBreak/>
-                        
-                        Press the button below / complete feedback to continue
+                        <TextBlock.Inlines>
+                            <Run Text="Place the"/>
+                            <Run x:Name="InstructionItem" Text="item" FontWeight="Bold"/>
+                            <Run Text="(as shown on screen) in the basket on the"/>
+                            <Run x:Name="InstructionSide" Text="left/right." FontWeight="Bold"/>
+                            <LineBreak/>
+                            <LineBreak/>
+                            <Run x:Name="InstructionContinue" Text="Complete the feedback task described below to continue."/>
+                        </TextBlock.Inlines>
+
                     </TextBlock>
 
                 </Grid>

@@ -8,6 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Backend\Interactions\Python\gesture_detection_thumbs_embedded.py" />
     <None Remove="Data\Tasks.csv" />
     <None Remove="Images\Tasks\1.png" />
     <None Remove="Images\Tasks\10.png" />
@@ -63,6 +64,20 @@
     <None Remove="Images\UI\Spacebar.png" />
     <None Remove="Images\UI\VoiceInteraction.png" />
   </ItemGroup>
+
+  <!--<ItemGroup>
+    <Content Include="Backend\Interactions\Python\gesture_detection_thumbs_embedded.py">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>-->
+
+	<ItemGroup>
+		<ContentWithTargetPath Include="Backend\Interactions\Python\gesture_detection_thumbs_embedded.py">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+			<TargetPath>gesture_detection_thumbs_embedded.py</TargetPath>
+		</ContentWithTargetPath>
+		<None Include="Backend\Interactions\Python\gesture_detection_thumbs_embedded.py" />
+	</ItemGroup>
 
   <ItemGroup>
     <EmbeddedResource Include="Data\Tasks.csv" />

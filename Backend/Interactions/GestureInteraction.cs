@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ExperimentInterface.Backend.Interactions.Python;
+using System;
 using System.Diagnostics;
 using System.IO;
 using System.Threading;
@@ -20,8 +21,8 @@ namespace ExperimentInterface.Backend.Interactions
 
         ProcessStartInfo processStartInfo = new ProcessStartInfo
         {
-            FileName = "C:\\Users\\20192685\\AppData\\Local\\Programs\\Python\\Python311\\python.exe",
-            Arguments = "C:\\Users\\20192685\\Documents\\GitHub\\isbep-experiment-interface\\Backend\\Interactions\\gesture_detection_thumbs_embedded.py",
+            FileName = PythonHelper.FindPythonPath() ?? PythonHelper.PromptForPythonPath(),
+            Arguments = PythonHelper.GetScriptPath(),
             UseShellExecute = false,
             RedirectStandardOutput = true,
             RedirectStandardError = true,
@@ -35,6 +36,8 @@ namespace ExperimentInterface.Backend.Interactions
 
             // Start the interaction
             StartMonitoring();
+
+            PythonHelper.FindPythonPath();
         }
 
         internal void StartMonitoring()

@@ -41,7 +41,7 @@ def detect_gesture(hand_landmarks):
     # Check if thumb is extended upwards
     thumb_up = (thumb_tip.y < thumb_ip.y < thumb_mcp.y < thumb_cmc.y)
     
-    # Check if other fingers are not extended (so curled)
+    # Check if other fingers are not extended (so folded)
     index_finger_folded = index_tip.y > index_pip.y
     middle_finger_folded = middle_tip.y > middle_pip.y
     ring_finger_folded = ring_tip.y > ring_pip.y
@@ -88,6 +88,7 @@ while cap.isOpened():
     if cv2.waitKey(5) & 0xFF == 27:
         break
 
+    # Use escape to kill the embedded process from within
     if keyboard.is_pressed('escape'):
         cap.release()
 

@@ -1,4 +1,5 @@
-﻿using ExperimentInterface.CustomControls;
+﻿using ExperimentInterface.Backend;
+using ExperimentInterface.CustomControls;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Navigation;
@@ -10,7 +11,7 @@ namespace ExperimentInterface.Pages
     /// </summary>
     public partial class Instructions : Page
     {
-        MainWindow? mainWindow = Application.Current.MainWindow as MainWindow;
+        Session session;
 
         #region Instruction strings
 
@@ -25,16 +26,12 @@ namespace ExperimentInterface.Pages
         public Instructions()
         {
             InitializeComponent();
+            session = Session.Instance;
         }
 
         private void OnPageLoaded(object sender, RoutedEventArgs e)
         {
-            int interaction = 0;
-
-            if (mainWindow != null)
-            {
-                interaction = mainWindow.session.experimentData.Interaction;
-            }
+            int interaction = session.experimentData.Interaction;
 
             switch (interaction)
             {

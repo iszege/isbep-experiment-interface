@@ -1,4 +1,5 @@
-﻿using ExperimentInterface.Backend.Interactions;
+﻿using ExperimentInterface.Backend;
+using ExperimentInterface.Backend.Interactions;
 using ExperimentInterface.CustomControls;
 using System;
 using System.Diagnostics;
@@ -15,7 +16,7 @@ namespace ExperimentInterface.Pages
     /// </summary>
     public partial class TaskTemplate : Page
     {
-        MainWindow? mainWindow = Application.Current.MainWindow as MainWindow;
+        Session session;
         Stopwatch stopwatch = new Stopwatch();
 
         VoiceInteraction? voiceInteraction;
@@ -30,6 +31,7 @@ namespace ExperimentInterface.Pages
         public TaskTemplate()
         {
             InitializeComponent();
+            session = Session.Instance;
         }
 
         #region Page Initialization
@@ -37,8 +39,7 @@ namespace ExperimentInterface.Pages
         private void OnPageLoaded(object sender, RoutedEventArgs e)
         {
             // Determine current interaction type
-            if (mainWindow != null)
-                currentInteractionType = mainWindow.session.experimentData.Interaction;
+            currentInteractionType = session.experimentData.Interaction;
 
             // Get the current SynchronizationContext for async threads of the GestureInteraction
             SynchronizationContext syncContext = SynchronizationContext.Current ?? throw new ArgumentNullException(nameof(syncContext));
@@ -53,7 +54,7 @@ namespace ExperimentInterface.Pages
             GestureInteraction.OnFeedbackGiven += GestureInteraction_OnFeedbackGiven;
 
             // Reset the amount of tasks remaining
-            if (mainWindow != null) mainWindow.session.taskManager.Reset();
+            session.taskManager.Reset();
 
             // Load the first task
             NextTask();
@@ -76,23 +77,20 @@ namespace ExperimentInterface.Pages
         /// </summary>
         private void NextTask()
         {
-            if (mainWindow != null)
-            {
-                // Load next task
-                Backend.Task? NextTask = mainWindow.session.taskManager.GetNextTask();
-                bool feedback = mainWindow.session.taskManager.GetNextTaskType();
+            // Load next task
+            Backend.Task? NextTask = session.taskManager.GetNextTask();
+            bool feedback = session.taskManager.GetNextTaskType();
 
-                // Populate the page or exit in case no new task was loaded
-                if (NextTask != null)
-                {
-                    PopulateFields(NextTask, feedback);
-                    currentTask = NextTask;
-                    stopwatch.Restart();
-                }
-                else
-                {
-                    Exit();
-                }
+            // Populate the page or exit in case no new task was loaded
+            if (NextTask != null)
+            {
+                PopulateFields(NextTask, feedback);
+                currentTask = NextTask;
+                stopwatch.Restart();
+            }
+            else
+            {
+                Exit();
             }
         }
 
@@ -122,26 +120,23 @@ namespace ExperimentInterface.Pages
         /// </summary>
         private void ToggleFeedbackControls(bool feedback)
         {
-            if (mainWindow != null)
-            {
-                Grid[] controls = { FeedbackButtons, FeedbackVoice, FeedbackGestures };
+            Grid[] controls = { FeedbackButtons, FeedbackVoice, FeedbackGestures };
 
-                if (feedback)
+            if (feedback)
+            {
+                for (int i = 1; i <= controls.Length; i++)
                 {
-                    for (int i = 1; i <= controls.Length; i++)
-                    {
-                        if (i == mainWindow.session.experimentData.Interaction)
-                            controls[i - 1].Visibility = Visibility.Visible;
-                        else
-                            controls[i - 1].Visibility = Visibility.Collapsed;
-                    }
+                    if (i == session.experimentData.Interaction)
+                        controls[i - 1].Visibility = Visibility.Visible;
+                    else
+                        controls[i - 1].Visibility = Visibility.Collapsed;
                 }
-                else
+            }
+            else
+            {
+                foreach (Grid control in controls)
                 {
-                    foreach (Grid control in controls)
-                    {
-                        control.Visibility = Visibility.Collapsed;
-                    }
+                    control.Visibility = Visibility.Collapsed;
                 }
             }
         }
@@ -181,11 +176,11 @@ namespace ExperimentInterface.Pages
         /// </summary>
         private void Exit()
         {
-            if (mainWindow != null) mainWindow.session.taskManager.SaveResults();
+            session.taskManager.SaveResults();
             currentTask = null;
 
             // Dispose the SpeechRecognitionEngine when ending the voice recognition task
-            if (mainWindow != null && mainWindow.session.experimentData.Interaction == 2) voiceInteraction.Dispose();
+            if (session.experimentData.Interaction == 2) voiceInteraction.Dispose();
 
             // Navigate to the task completed page
             NavigationService.Navigate(new Uri("/Pages/Done.xaml", UriKind.Relative));
@@ -204,13 +199,13 @@ namespace ExperimentInterface.Pages
             isPickable = containsFeedback && isPickable;
 
             // Communicate result to the TaskManager
-            if (mainWindow != null && currentTask != null)
+            if (currentTask != null)
             {
-                mainWindow.session.taskManager.AddResult(mainWindow.session.experimentData,
-                                                         currentTask,
-                                                         stopwatch.Elapsed.TotalSeconds,
-                                                         containsFeedback,
-                                                         isPickable);
+                session.taskManager.AddResult(session.experimentData,
+                                              currentTask,
+                                              stopwatch.Elapsed.TotalSeconds,
+                                              containsFeedback,
+                                              isPickable);
             }
 
             // Load the next task
@@ -244,15 +239,13 @@ namespace ExperimentInterface.Pages
         /// <param name="e"></param>
         private void OnKeyDown(object sender, KeyEventArgs e)
         {
-            if (mainWindow == null) return;
-
             // If no feedback is needed, let spacebar load the next task
-            if (e.Key == Key.Space && !mainWindow.session.taskManager.GetNextTaskType())
+            if (e.Key == Key.Space && !session.taskManager.GetNextTaskType())
                 SaveResult(false, false);
 
             // Input other than space is only relevant to feedback tasks in the button interaction method
-            if (!mainWindow.session.taskManager.GetNextTaskType()) return;
-            if (mainWindow.session.experimentData.Interaction != 1) return;
+            if (!session.taskManager.GetNextTaskType()) return;
+            if (session.experimentData.Interaction != 1) return;
 
             // Send to robot button is expected on the left, send to human on the right
             if (e.Key == Key.Right)
@@ -268,9 +261,8 @@ namespace ExperimentInterface.Pages
         /// <param name="pickable"></param>
         private void VoiceInteraction_OnFeedbackGiven(bool pickable)
         {
-            if (mainWindow == null) return;
-            if (mainWindow.session.experimentData.Interaction != 2) return;
-            if (!mainWindow.session.taskManager.GetNextTaskType()) return;
+            if (session.experimentData.Interaction != 2) return;
+            if (!session.taskManager.GetNextTaskType()) return;
 
             //Trace.WriteLine($"Registered {((pickable) ? "yes" : "no")}, submitting feedback!");
 
@@ -284,9 +276,8 @@ namespace ExperimentInterface.Pages
         /// <param name="pickable"></param>
         private void GestureInteraction_OnFeedbackGiven(bool pickable)
         {
-            if (mainWindow == null) return;
-            if (mainWindow.session.experimentData.Interaction != 3) return;
-            if (!mainWindow.session.taskManager.GetNextTaskType()) return;
+            if (session.experimentData.Interaction != 3) return;
+            if (!session.taskManager.GetNextTaskType()) return;
 
             //Trace.WriteLine($"Registered {((pickable) ? "yes" : "no")}, submitting feedback!");
 

@@ -1,4 +1,5 @@
-﻿using ExperimentInterface.CustomControls;
+﻿using ExperimentInterface.Backend;
+using ExperimentInterface.CustomControls;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Navigation;
@@ -12,10 +13,12 @@ namespace ExperimentInterface.Pages
     {
         Window window = Application.Current.MainWindow as Window;
         MainWindow? mainWindow = Application.Current.MainWindow as MainWindow;
+        Session session;
 
         public Landing()
         {
             InitializeComponent();
+            session = Session.Instance;
             UpdateUI();
         }
 
@@ -24,12 +27,10 @@ namespace ExperimentInterface.Pages
             NavigationCard? ClickedButton = e.OriginalSource as NavigationCard;
 
             // Set the current interaction type if applicable
-            if (mainWindow != null)
-            {
-                if (ClickedButton == InteractionMethod1) mainWindow.session.experimentData.Interaction = 1;
-                if (ClickedButton == InteractionMethod2) mainWindow.session.experimentData.Interaction = 2;
-                if (ClickedButton == InteractionMethod3) mainWindow.session.experimentData.Interaction = 3;
-            }
+            if (ClickedButton == InteractionMethod1) session.experimentData.Interaction = 1;
+            if (ClickedButton == InteractionMethod2) session.experimentData.Interaction = 2;
+            if (ClickedButton == InteractionMethod3) session.experimentData.Interaction = 3;
+
 
             // In any case, navigate to the specified URI if a NavigationCard was indeed clicked
             if (ClickedButton != null)
@@ -84,8 +85,7 @@ namespace ExperimentInterface.Pages
         /// </summary>
         private void UpdateUI()
         {
-            if (mainWindow == null) return;
-            ParticipantID.Content = $"Participant #{mainWindow.session.experimentData.ID}";
+            ParticipantID.Content = $"Participant #{session.experimentData.ID}";
         }
     }
 }

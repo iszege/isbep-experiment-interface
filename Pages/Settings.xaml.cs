@@ -1,4 +1,5 @@
-﻿using ExperimentInterface.CustomControls;
+﻿using ExperimentInterface.Backend;
+using ExperimentInterface.CustomControls;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Navigation;
@@ -10,16 +11,13 @@ namespace ExperimentInterface.Pages
     /// </summary>
     public partial class Settings : Page
     {
-        MainWindow? mainWindow = Application.Current.MainWindow as MainWindow;
+        Session session;
 
         public Settings()
         {
             InitializeComponent();
-            if (mainWindow != null)
-            {
-                CurrentParticipantText.Text = $"The current participant is participant #{mainWindow.session.experimentData.ID}." +
-                                              $"\n\n Set up a new participant profile ?";
-            }
+            session = Session.Instance;
+            CurrentParticipantText.Text = $"The current participant is participant #{session.experimentData.ID}. \n\n Set up a new participant profile ?";
         }
 
         private void OnNavigationButtonClick(object sender, RoutedEventArgs e)
@@ -28,7 +26,7 @@ namespace ExperimentInterface.Pages
 
             if (ClickedButton == SaveButton)
             {
-                if (mainWindow != null) mainWindow.session.experimentData.ID++;
+                session.experimentData.ID++;
                 NavigationService.GoBack();
             }
             else

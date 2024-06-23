@@ -36,7 +36,7 @@ namespace ExperimentInterface.Pages
             // In any case, navigate to the specified URI if a NavigationCard was indeed clicked, or the Python config screen if needed
             if (ClickedButton != null)
             {
-                if (session.experimentData.Interaction == 3 && session.Interpreter == null) 
+                if (session.experimentData.Interaction == 3 && session.Interpreter == null)
                     NavigationService.Navigate(new Uri("/Pages/PythonConfig.xaml", UriKind.Relative));
                 else
                     NavigationService.Navigate(ClickedButton.NavigationUri);

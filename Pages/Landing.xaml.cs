@@ -1,5 +1,6 @@
 ﻿using ExperimentInterface.Backend;
 using ExperimentInterface.CustomControls;
+using System;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Navigation;
@@ -32,10 +33,13 @@ namespace ExperimentInterface.Pages
             if (ClickedButton == InteractionMethod3) session.experimentData.Interaction = 3;
 
 
-            // In any case, navigate to the specified URI if a NavigationCard was indeed clicked
+            // In any case, navigate to the specified URI if a NavigationCard was indeed clicked, or the Python config screen if needed
             if (ClickedButton != null)
             {
-                NavigationService.Navigate(ClickedButton.NavigationUri);
+                if (session.experimentData.Interaction == 3 && session.Interpreter == null) 
+                    NavigationService.Navigate(new Uri("/Pages/PythonConfig.xaml", UriKind.Relative));
+                else
+                    NavigationService.Navigate(ClickedButton.NavigationUri);
             }
         }
 

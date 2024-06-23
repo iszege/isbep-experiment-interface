@@ -19,20 +19,27 @@ namespace ExperimentInterface.Backend.Interactions
 
         private bool started = false;
 
-        ProcessStartInfo processStartInfo = new ProcessStartInfo
-        {
-            FileName = PythonHelper.FindPythonPath() ?? PythonHelper.PromptForPythonPath(),
-            Arguments = PythonHelper.GetScriptPath(),
-            UseShellExecute = false,
-            RedirectStandardOutput = true,
-            RedirectStandardError = true,
-            CreateNoWindow = true
-        };
+        Session session;
+
+        ProcessStartInfo processStartInfo;
 
         internal GestureInteraction(SynchronizationContext syncContext)
         {
             // Load the SynchronizationContext
             _syncContext = syncContext;
+
+            // Create ProcessStartInfo
+            session = Session.Instance;
+
+            processStartInfo = new ProcessStartInfo
+            {
+                FileName = session.Interpreter,
+                Arguments = PythonHelper.GetScriptPath(),
+                UseShellExecute = false,
+                RedirectStandardOutput = true,
+                RedirectStandardError = true,
+                CreateNoWindow = true
+            };
 
             // Start the interaction
             StartMonitoring();

@@ -1,5 +1,6 @@
 ﻿using ExperimentInterface.Backend;
 using ExperimentInterface.CustomControls;
+using System;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Navigation;
@@ -44,11 +45,14 @@ namespace ExperimentInterface.Pages
 
         private void OnDebugClick(object sender, RoutedEventArgs e)
         {
-            NavigationButton? ClickedButton = e.OriginalSource as NavigationButton;
+            NavigationButton? clickedButton = e.OriginalSource as NavigationButton;
 
-            if (ClickedButton != null)
+            if (clickedButton != null)
             {
-                NavigationService.Navigate(ClickedButton.NavigationUri);
+                if (clickedButton == GestureDebug && session.Interpreter == null)
+                    NavigationService.Navigate(new Uri("/Pages/PythonConfig.xaml", UriKind.Relative));
+                else
+                    NavigationService.Navigate(clickedButton.NavigationUri);
             }
         }
     }

@@ -1,0 +1,5 @@
+﻿# Modules used in the gesture interaction method
+# Should in principle work with the most recent versions of all modules
+opencv-python
+mediapipe
+keyboard

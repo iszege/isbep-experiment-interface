@@ -1,10 +1,12 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace ExperimentInterface.Backend.Interactions.Python
 {
@@ -18,6 +20,11 @@ namespace ExperimentInterface.Backend.Interactions.Python
             return Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "gesture_detection_thumbs_embedded.py");
         }
 
+        /// <summary>
+        /// Attempts to find a Python interpreter by checking all default install paths for Python 3+ interpreters.
+        /// Could probably achieve this more elegantly by checking the Registry or using Environment Variables.
+        /// </summary>
+        /// <returns><c>string path</c>: the path to the most recent interpreter found</returns>
         internal static string? FindPythonPath()
         {
             string localAppdata = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
@@ -63,9 +70,57 @@ namespace ExperimentInterface.Backend.Interactions.Python
             return null;
         }
 
-        internal static string PromptForPythonPath()
+        internal static string? PromptForPythonPath()
         {
-            return string.Empty;
+            OpenFileDialog openFileDialog = new OpenFileDialog
+            {
+                Filter = "Python Executable|python.exe",
+                Title = "Select Python Interpreter"
+            };
+
+            if (openFileDialog.ShowDialog() == true)
+            {
+                return openFileDialog.FileName;
+            }
+            else
+            {
+                MessageBox.Show("Python interpreter not selected. The operation cannot proceed.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return null;
+            }
+        }
+
+        internal static void InstallDependencies()
+        {
+            Session session = Session.Instance;
+            if (session.Interpreter == null) return;
+
+            string dependencies = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "dependencies.txt");
+            if (!File.Exists(dependencies)) return;
+
+            ProcessStartInfo processStartInfo = new ProcessStartInfo
+            {
+                FileName = session.Interpreter,
+                Arguments = $"-m pip install -r {dependencies}",
+                UseShellExecute = false,
+                RedirectStandardOutput = false,
+                RedirectStandardError = false,
+                CreateNoWindow = false
+            };
+
+            using (Process process = Process.Start(processStartInfo))
+            {
+                //using (StreamReader reader = process.StandardOutput)
+                //{
+                //    string result = reader.ReadToEnd();
+                //    Trace.WriteLine(result);
+                //}
+
+                //using (StreamReader reader = process.StandardError)
+                //{
+                //    string error = reader.ReadToEnd();
+                //    Trace.WriteLine(error);
+                //}
+            }
         }
     }
 }

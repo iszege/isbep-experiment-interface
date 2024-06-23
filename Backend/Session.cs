@@ -20,5 +20,7 @@ namespace ExperimentInterface.Backend
 
         internal TaskManager taskManager = new();
         internal ExperimentData experimentData = new();
+
+        internal string? Interpreter { get; set; }
     }
 }

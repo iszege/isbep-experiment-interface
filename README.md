@@ -8,5 +8,5 @@ Voice recognition requires a microphone and currently uses the Windows `System.S
 
 Gesture detection requires a webcam and may take a few seconds to initialize. As it is performed in its own process, do not forget to manually end it (by default, `escape` is bound to this).
 
-## Inactive and Archived
+## Archived and Final
 Following the end of the ISBEP project, this repository has been archived.

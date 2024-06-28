@@ -6,7 +6,7 @@ After building the solution, the tool _should_ work as is, **except for the gest
 
 Voice recognition requires a microphone and currently uses Window's Speech dll.
 
-Gesture detection requires a webcam and may take a few seconds to initialize. As it is performed its own process, do not forget to manually end it (by default, `escape` is bound to this).
+Gesture detection requires a webcam and may take a few seconds to initialize. As it is performed in its own process, do not forget to manually end it (by default, `escape` is bound to this).
 
 ## Inactive and Archived
 Following the end of the ISBEP project, this repository has been archived.

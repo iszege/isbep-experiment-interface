@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:ExperimentInterface"
         xmlns:cc="clr-namespace:ExperimentInterface.CustomControls"
         mc:Ignorable="d"
-        Height="600" Width="920"
+        Height="720" Width="1280"
         WindowStartupLocation="CenterScreen"
         WindowStyle="None"
         ResizeMode="CanResize"

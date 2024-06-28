@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:ExperimentInterface.Pages"
       xmlns:cc="clr-namespace:ExperimentInterface.CustomControls"
       mc:Ignorable="d" 
-      d:DesignHeight="600" d:DesignWidth="920"
+      d:DesignHeight="720" d:DesignWidth="1280"
       Title="Settings">
 
     <Grid>
